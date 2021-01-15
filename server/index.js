@@ -1,0 +1,115 @@
+"use strict";
+const express = require("express");
+const db = require('./db');
+const server = express();
+
+server.use(require('body-parser').json());
+
+const newToken = () => {
+    return Buffer.from(Math.random().toString()).toString('base64');
+};
+const tokens = {};
+
+console.log('Initializing routes');
+let database;
+
+db.Database.create('app.db').then((d) => { database = d; });
+
+server.get('/api/users/read', async (req, res) => {
+	const { name, password } = req.body;
+	const user = await database.readUser(name);
+	
+	if (!user) {
+		return res.json({ ok: false, reason: "User does not exist" });
+	}
+
+	if (await user.verify(password)) {
+		res.json({
+			ok: true,
+			token: tokens[name] || (tokens[name] = newToken()),
+			user: { name, email: user.email, photo: user.photo }
+		});
+	} else {
+		res.json({ ok: false, reason: "Password incorrect" });
+	}
+});
+
+server.post('/api/users/write', async (req, res) => {
+	// kaka: add some firebase stuff here for file upload maybe?
+	const { name, email, password } = req.body;
+	
+	if (await database.readUser(name)) {
+		res.json({
+			ok: false,
+			reason: "User already exists"
+		});
+	} else {
+		await database.writeUser(await db.User.create(name, email, password, ''));
+		
+		res.json({
+			ok: true,
+			token: tokens[name] || (tokens[name] = newToken()),
+			user: { name, email: user.email, photo: user.photo }
+		});
+	}
+});
+
+server.post('/api/users/logout', async (req, res) => {
+	const { name, token } = req.body;
+
+	if (tokens[name] != token) {
+		res.json({
+			ok: false,
+			reason: "Provided token doesn't match user to logout"
+		});
+	} else {
+		delete tokens[name];
+        res.json({
+            ok: true
+        });
+	}
+});
+
+server.get('/api/charities/read', async (req, res) => {
+	const { name } = req.body;
+	const charity = await database.readCharity(name);
+
+	if (!charity) {
+		res.json({
+			ok: false,
+			reason: "Charity doesn't exist"
+		});
+	} else {
+		res.json({
+			ok: true,
+			charity: charity
+		});
+	}
+});
+
+server.get('/api/charities/search', async (req, res) => {
+	const { name, tags } = req.body;
+	const charities = await database.filterCharity(name, tags);
+
+	res.json({
+		ok: true,
+		data: charities
+	});
+});
+
+server.post('/api/charities/write', async (req, res) => {
+	const { name, photo, owner, desc, website, tags, venmo, gofundme, token } = req.body;
+
+	if (tokens[owner] != token) {
+		return res.json({ ok: false, reason: "Owner's token does not match provided token" });
+	}
+
+	if (await database.readCharity(name)) {
+		res.json({ ok: false, reason: "Charity already exists" });
+	} else {
+		await database.writeCharity(new db.Charity(name, photo, owner, desc, website, tags, venmo, gofundme));
+		res.json({ ok: true });
+	}
+});
+
+module.exports = server;
