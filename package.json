@@ -20,7 +20,7 @@
     "firebase": "^8.2.3",
     "firebase-admin": "^9.4.2",
     "formik": "^2.2.6",
-    "next": "^9.5.5",
+    "next": "^10.0.5",
     "postcss": "^8.2.4",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from 'next/link';
 import { Formik } from "formik";
 import firebase from "firebase";
 
@@ -51,6 +52,7 @@ function LoginPage(){
 					{errors.password && touched.password && errors.password}
 					
 					<button type="submit" disabled={isSubmitting}> Submit </button>
+					<p>Don't have an account? <Link href="/signup/signup"><a>Sign Up</a></Link></p>
 				</form>
 			)}
 		</Formik>

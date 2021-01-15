@@ -1,8 +1,19 @@
-//import Link from ('next/link')
-//import Head from ('next/head')
+import Link from 'next/link'
+import Head from 'next/head'
 
-function HomePage() { // use arrow functions smh my head (shut)
-  return /*(<Head> <title>Pana | Home</Head>)*/ <div>Sugarfi qt</div>;
+export default function HomePage() { // use arrow functions smh my head (shut)
+  return (
+		<main>
+		<Head>
+			<title>Pana | Home</title>
+		</Head>	
+				<div className="topnav">
+					<Link href="/login/login">
+						<a class>Login</a>
+					</Link>
+				</div>
+		</main>
+	);
 }
 
-export default HomePage;
+//export default HomePage;

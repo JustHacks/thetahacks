@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Formik } from "formik";
+import Link from 'next/link';
 import firebase from "firebase";
 
 const SignupPage = () => {
 	
 	const onSubmit = async ({ email, password }, { setSubmitting }) => {
-		await firebase.auth().createUserWithEmailAndPassword(email, password);
+		const user = await firebase.auth().createUserWithEmailAndPassword(email, password);
 		setSubmitting(false);
 	};
 
@@ -51,6 +52,7 @@ const SignupPage = () => {
 					{errors.password && touched.password && errors.password}
 					
 					<button type="submit" disabled={isSubmitting}> Submit </button>
+					<p>Have an account? <Link href="/login/login"><a>Login</a></Link></p>
 				</form>
 			)}
 		</Formik>

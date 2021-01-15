@@ -1,5 +1,6 @@
 import React from "react";
 import firebase from "firebase";
+import 'tailwindcss/tailwind.css';
 
 const firebaseConfig = {
 	apiKey: "AIzaSyBmYQrav3uuCnk28KCTmSUbRRV9fAATr3A",
