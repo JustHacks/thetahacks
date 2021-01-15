@@ -17,10 +17,8 @@ const SignupPage = () => {
 			errors.email = "Required";
 		} else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)) {
 			errors.email = "Invalid email address";
-		} else if (password.length < 8){
+		} else if (password.length < 6){
 			errors.password = "Password too short.";
-		} else if (password.length > 128){
-			errors.password = "Password too long.";
 		}
 		return errors;
 	};
@@ -52,7 +50,7 @@ const SignupPage = () => {
 					{errors.password && touched.password && errors.password}
 					
 					<button type="submit" disabled={isSubmitting}> Submit </button>
-					<p>Have an account? <Link href="/login/login"><a>Login</a></Link></p>
+					<p>Have an account? <Link href="/login"><a>Login</a></Link></p>
 				</form>
 			)}
 		</Formik>
