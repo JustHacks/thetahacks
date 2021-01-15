@@ -1,6 +1,6 @@
 import React from "react";
 import firebase from "firebase";
-import 'style.css';
+import './styles/style.css';
 
 const firebaseConfig = {
 	apiKey: "AIzaSyBmYQrav3uuCnk28KCTmSUbRRV9fAATr3A",
