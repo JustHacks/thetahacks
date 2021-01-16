@@ -46,6 +46,7 @@ const LoginPage = () => {
 				{({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
 				<div className="container">
 					<form onSubmit={handleSubmit}>
+					<div className="wrap">
 						<label htmlFor="email">Email:</label>
 						<input
 							type="email"
@@ -56,8 +57,9 @@ const LoginPage = () => {
 							onBlur={handleBlur}
 							value={values.email}
 						/>
+						</div>
 						{errors.email && touched.email && errors.email}
-
+						<div className="wrap">
 						<label htmlFor="password">Password:</label>
 						<input
 							type="password"
@@ -68,6 +70,7 @@ const LoginPage = () => {
 							onBlur={handleBlur}
 							value={values.password}
 						/>
+						</div>
 						{errors.password && touched.password && errors.password}
 					
 						<button type="submit" disabled={isSubmitting}> Submit </button>
@@ -77,7 +80,6 @@ const LoginPage = () => {
 				)}
 			</Formik>
 			/*<style jsx>{`
-			
 			`}</style>*/
 		</>
 	);
