@@ -1,6 +1,7 @@
 import React from "react";
+import Head from "next/head";
 import firebase from "firebase";
-import './styles/style.css';
+import '../styles/style.css';
 
 const firebaseConfig = {
 	apiKey: "AIzaSyBmYQrav3uuCnk28KCTmSUbRRV9fAATr3A",
@@ -16,12 +17,22 @@ class App extends React.Component {
 	constructor(props){
 		super(props);
 	};
-	componentDidMount(){
-		firebase.initializeApp(firebaseConfig);
+	async componentDidMount(){
+		try {
+			await firebase.initializeApp(firebaseConfig);
+		} catch(e){
+			console.error(e);
+		}
+		await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 	};
 	render(){
 		const { Component, pageProps } = this.props;
-		return <Component {...pageProps}/>
+		return <>
+			<Head>
+				<script src="https://kit.fontawesome.com/43c1b0f304.js" crossorigin="anonymous"></script>
+			</Head>
+			<Component {...pageProps}/>
+		</>
 	};
 };
 

@@ -1,13 +1,32 @@
-import Link from 'next/link';
-import Head from 'next/head';
-import Image from 'next/image';
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import Head from "next/head";
+import Image from "next/image";
+import firebase from "firebase";
 
-export default function HomePage() { // use arrow functions smh my head (shut) (you shut) (yo momma shut) (not you smh idot) (unless you wrote 'shut') (perhaps I did)
-  return (
+import Header from "../components/header";
+import Hero from "../components/hero";
+
+export default function HomePage() { // use arrow functions smh my head (shut) (you shut) (yo momma shut) (not you smh idot) (unless you wrote "shut") (perhaps I did)
+	const [currentUser, setCurrentUser] = useState(null);
+
+	useEffect(() => {
+		setCurrentUser(firebase.auth().currentUser ? "yes" : "no");
+		
+		firebase.auth().onAuthStateChanged(() => {
+			setCurrentUser(firebase.auth().currentUser ? "yes" : "no");
+		});
+	});
+
+// show how u make it :think-pika:
+
+	return (
 		<main>
             <Head>
                 <title>Pana | Home</title>
-            </Head>	
+            </Head>
+			<Header/>
+			<Hero/>
             <nav>
                 <Link href="/dashboard">
                     <a>
@@ -15,6 +34,8 @@ export default function HomePage() { // use arrow functions smh my head (shut) (
                     </a>
                 </Link>
             </nav>
+			
+			{currentUser}
 		</main>
 	);
 };

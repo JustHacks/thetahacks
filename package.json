@@ -19,6 +19,8 @@
     "firebase": "^8.2.3",
     "firebase-admin": "^9.4.2",
     "formik": "^2.2.6",
+    "isomorphic-unfetch": "^3.1.0",
+    "key.js": "^1.0.7",
     "next": "^10.0.5",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",

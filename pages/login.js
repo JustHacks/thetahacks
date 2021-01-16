@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Formik } from "formik";
 import firebase from "firebase";
 
-function LoginPage(){
+const LoginPage = () => {
 	
 	const onSubmit = async ({ email, password }, { setSubmitting }) => {
 		await firebase.auth().signInWithEmailAndPassword(email, password);

@@ -19,18 +19,29 @@ const SignupPage = () => {
 			errors.email = "Invalid email address";
 		} else if (password.length < 6){
 			errors.password = "Password too short.";
+		} else if (displayName.length < 3){
+			errors.displayName = "Display name too short.";
 		}
 		return errors;
 	};
 
 	return (
 		<Formik
-			initialValues={{ email: '', password: '' }}
+			initialValues={{ email: '', password: '', displayName: '' }}
 			validate={validate}
 			onSubmit={onSubmit}
 		>
 			{({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
 				<form onSubmit={handleSubmit}>
+					<input
+						type="text"
+						name="displayName"
+						onChange={handleChange}
+						onBlur={handleBlur}
+						value={values.email}
+					/>
+					{errors.displayName && touched.displayName && errors.displayName}
+					
 					<input
 						type="email"
 						name="email"

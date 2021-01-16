@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root{
+    --white: #fff;
+    --main:#3dc2a3;
+    --maindark: #369b83;
+    --text: #5E5E5E;
+    --opaque: #e4e4e444;
+    --shadow-color: #0000003d;
+    --shadow: 2px 0px 4px #0000003d;
+    --font-fam:'Poppins', sans-serif;
+}
+
+*, *::after, *::before {
+	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: var(--text);
+}
+
+body, html  {
+	background: rgb(180, 207, 209); 
+    font-family: var(--font-fam);
+    color: var(--text);
+    background-image: repeating-linear-gradient(135deg, #4f4f4f03 0px, #4f4f4f03 14px,#5e5e5e03 14px, #5e5e5e03 28px,#6d6d6d03 28px, #6d6d6d03 42px,#7c7c7c03 42px, #7c7c7c03 56px,#8b8b8b03 56px, #8b8b8b03 70px,#9a9a9a03 70px, #9a9a9a03 84px,#a9a9a903 84px, #a9a9a903 98px,#b8b8b803 98px, #b8b8b803 112px),repeating-linear-gradient(45deg, #dddddd03 0px, #dddddd03 14px,#cfcfcf03 14px, #cfcfcf03 28px,#c0c0c003 28px, #c0c0c003 42px,#b2b2b203 42px, #b2b2b203 56px,#a4a4a403 56px, #a4a4a403 70px,#96969603 70px, #96969603 84px,#87878703 84px, #87878703 98px,#79797903 98px, #79797903 112px),linear-gradient(90deg, #ffffff,#ffffff);
+    background-attachment: fixed;
+} 
+
+/* header */
+
+.header{
+    width: 100%;
+    height: 70px;
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.nav{
+    display: flex;
+    align-items: center;
+}
+
+.search-bar{
+    border-radius: 20px;
+    padding: 3px 10px;   
+    box-shadow: var(--shadow);
+    margin: 0 10px;
+}
+
+input{
+    border: none;
+}
+
+.search-bar input:focus{
+    outline: transparent;
+}
+
+.hero{
+    width: 100%;
+    height: 400px;
+    background: linear-gradient(270deg, #369b8360, #38383899), url(/images/hero.jpg);;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-position-y: center;
+    background-size: cover;
+
+}
+
+.hero h1, h4{
+    color: var(--white);
+    font-weight: normal;    
+    padding: 5px;
+}
+
+/* buttons */
+.hero .btns{
+    display: inline-flex;
+    margin: 15px;
+}
+
+.btn{
+    padding: 2px 15px;
+    cursor: pointer;
+    transition: .2s ease-in-out;
+    margin: 0 5px;
+}
+
+.primary-btn {
+    color: var(--white);
+    background: var(--main);
+    border: 2px solid var(--main);
+}
+
+.primary-btn:hover{
+    background: var(--maindark); 
+    border-color:var(--maindark); 
+    }
+
+.secondary-btn {
+    color: var(--main);
+    background: var(--white);
+    border: 2px solid var(--main);
+}
+
+.secondary-btn:hover{background: var(--opaque);}
+
+.tertiary-btn {
+    color: var(--white);
+    background: var(--opaque);
+    border: 2px solid var(--white);
+}
+
+.tertiary-btn:hover{background: var(--shadow-color)}
+
+.btn:focus{
+    outline: transparent;
+}
+
+a{
+    text-decoration: none;
+}
+
+hr{
+	height: 5px;
+	width: 80%;
+	border: none;
+	border-radius: 5em;
+	box-shadow: inset 0 5px 12px -5px var(--shadow-color);
+}
+
+/* footer */
+
+.footer{
+    width: 100%;
+    height: 100%;
+    background: var(--main);
+}
+
+/* cards */
+
+
+.w-card{
+    width: 500px;
+    height:  150px;
+    padding: 10px;
+    background: var(--white);
+/* 	position: absolute; */
+	display:flex;
+	align-items: flex-start;
+}
+
+.w-card img{
+    width: 150px;
+	height: 150px;
+}
+
+.card-text p{
+	height: 120px;
+	padding-left: 10px;
+	margin-bottom: 10px;
+	overflow:hidden;
+}
+
+.card-text .btns{
+	position: relative;
+	bottom: 1px;
+}
+

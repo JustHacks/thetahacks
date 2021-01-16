@@ -1,6 +1,8 @@
 "use strict";
 const express = require("express");
 const db = require('./db');
+const admin = require("firebase-admin");
+
 const server = express();
 
 server.use(require('body-parser').json());
@@ -14,8 +16,10 @@ console.log('Initializing routes');
 let database;
 
 db.Database.create('app.db').then((d) => { database = d; });
+admin.initializeApp({ credential: admin.credential.cert(require("./key")) });
 
-server.get('/api/users/read', async (req, res) => {
+/*
+server.post('/api/users/read', async (req, res) => {
 	const { name, password } = req.body;
 	const user = await database.readUser(name);
 	
@@ -69,8 +73,9 @@ server.post('/api/users/logout', async (req, res) => {
         });
 	}
 });
+*/
 
-server.get('/api/charities/read', async (req, res) => {
+server.post('/api/charities/read', async (req, res) => {
 	const { name } = req.body;
 	const charity = await database.readCharity(name);
 
@@ -87,7 +92,7 @@ server.get('/api/charities/read', async (req, res) => {
 	}
 });
 
-server.get('/api/charities/search', async (req, res) => {
+server.post('/api/charities/search', async (req, res) => {
 	const { name, tags } = req.body;
 	const charities = await database.filterCharity(name, tags);
 
@@ -98,11 +103,8 @@ server.get('/api/charities/search', async (req, res) => {
 });
 
 server.post('/api/charities/write', async (req, res) => {
-	const { name, photo, owner, desc, website, tags, venmo, gofundme, token } = req.body;
-
-	if (tokens[owner] != token) {
-		return res.json({ ok: false, reason: "Owner's token does not match provided token" });
-	}
+	const { name, photo, desc, website, tags, venmo, gofundme, token } = req.body;
+	const { uid: owner } = await admin.auth().verifyIdToken(token);
 
 	if (await database.readCharity(name)) {
 		res.json({ ok: false, reason: "Charity already exists" });
