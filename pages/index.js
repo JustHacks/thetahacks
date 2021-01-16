@@ -15,9 +15,8 @@ export default function HomePage() { // use arrow functions smh my head (shut) (
                     </a>
                 </Link>
             </nav>
-				<Image src="/images/hero.jpg" alt="hero" width={/>
 		</main>
 	);
-}
+};
 
 //export default HomePage;
