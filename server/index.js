@@ -5,6 +5,14 @@ const admin = require("firebase-admin");
 
 const server = express();
 
+const VALID_TYPES = [
+    'png',
+    'jpg',
+    'jpeg',
+    'gif',
+    'webp'
+];
+
 server.use(require('body-parser').json());
 
 const newToken = () => {
@@ -103,13 +111,18 @@ server.post('/api/charities/search', async (req, res) => {
 });
 
 server.post('/api/charities/write', async (req, res) => {
-	const { name, photo, desc, website, tags, venmo, gofundme, token } = req.body;
+	const { name, photo, desc, website, tags, links, token } = req.body;
 	const { uid: owner } = await admin.auth().verifyIdToken(token);
 
 	if (await database.readCharity(name)) {
 		res.json({ ok: false, reason: "Charity already exists" });
 	} else {
-		await database.writeCharity(new db.Charity(name, photo, owner, desc, website, tags, venmo, gofundme));
+		// charities/{name}/photo.{ext}
+        const naive = photo.name.split(".")[1];
+        const type = VALID_TYPES.includes(naive) ? naive : 'png';
+		const photoUrl = admin.storage().ref().child(`charities/${name}/photo.${type}`).put(photo.data /*or smth*/).getDownloadURL();
+		await database.writeCharity(new db.Charity(name, photoUrl, owner, desc, website, tags, links));
+	
 		res.json({ ok: true });
 	}
 });

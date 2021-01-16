@@ -22,15 +22,14 @@ class User {
 }
 
 class Charity {
-    constructor(name, photo, owner, desc, website, tags, venmo, gofundme) {
+    constructor(name, photo, owner, desc, website, tags, links) {
         this.name = name.replace(/[^A-Za-z0-9- ]/g, '');
         this.photo = photo;
         this.owner = owner.replace(/[^A-Za-z0-9- ]/g, '');
         this.desc = desc;
         this.website = website.replace(/[^A-Za-z0-9-/:?&. ]/g, '');
         this.tags = tags.replace(/[^A-Za-z0-9- ]/g, '');
-        this.venmo = venmo;
-        this.gofundme = gofundme;
+        this.links = links.replace(/[^a-zA-Z0-9-:\/?&,]/, '');
     }
 }
 
@@ -46,7 +45,7 @@ class Database {
             driver: sqlite3.Database
         });
         await db.run("CREATE TABLE IF NOT EXISTS users (name text, email text, hash text, photo text)");
-        await db.run("CREATE TABLE IF NOT EXISTS charities (name text, photo text, owner text, desc text, website text, tags text, venmo text, gofundme text)");
+        await db.run("CREATE TABLE IF NOT EXISTS charities (name text, photo text, owner text, desc text, website text, tags text, links text)");
         return new Database(filename, db);
     }
 
@@ -63,15 +62,15 @@ class Database {
     }
 
     async readCharity(name) {
-        const row = await this.db.get("SELECT photo, owner, desc, website, tags, venmo, gofundme FROM charities WHERE name=?", name);
+        const row = await this.db.get("SELECT photo, owner, desc, website, tags, links FROM charities WHERE name=?", name);
         if (!row) {
             return undefined;
         }
-        return new Charity(name, row.photo, row.owner, row.desc, row.website, row.tags, row.venmo, row.gofundme);
+        return new Charity(name, row.photo, row.owner, row.desc, row.website, row.tags, row.links);
     }
 
     async writeCharity(charity) {
-        await this.db.run("INSERT INTO charities VALUES (?, ?, ?, ?, ?, ?, ?, ?)", charity.name, charity.photo, charity.owner, charity.desc, charity.website, charity.tags, charity.venmo, charity.gofundme);
+        await this.db.run("INSERT INTO charities VALUES (?, ?, ?, ?, ?, ?, ?)", charity.name, charity.photo, charity.owner, charity.desc, charity.website, charity.tags, charity.links);
     }
 
     async filterCharity(name, tags) {

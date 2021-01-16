@@ -1,15 +1,51 @@
 import React, { useState, useEffect } from "react";
 import { Formik } from "formik";
+import firebase from "firebase";
+import { charityWrite } from "../../lib/api";
 
 const NewCharity = () => {
 	
-	const onSubmit = async ({ email, password }, { setSubmitting }) => {
+	const onSubmit = async ({ donationLinks, description, website, name, tags, photo }, { setSubmitting }) => {
+		const user = firebase.auth().currentUser;
+        if (!user) {
+            window.location = '/login'; // is this the right way to do this?
+        }
+        const reader = new FileReader();
+        reader.addEventListener('load', async () => {
+            charityWrite({ 
+                name, 
+                photo: {
+                    name: photo.name,
+                    body: reader.result,
+                }, 
+                desc: description, 
+                website, 
+                tags, 
+                links: donationLinks, 
+                owner: user.name, 
+                token: await user.getIdToken()
+            });
+        });
+        reader.readAsBinaryString(photo);
+
 		setSubmitting(false);
 	};
 
-	const validate = ({ photo, name, description, donationLinks, infoLinks }) => {
+	const validate = ({ photo, name, description, donationLinks, website }) => {
 		const errors = {};
 		
+		let url;
+		try {
+			url = new URL(website);
+		} catch(e){
+			errors.website = "Invalid donation links.";
+			return;
+		}
+		if(url.protocol != "https" || url.protocol != "http"){
+			errors.donationLinks = "Invalid donation links.";
+			return;
+		}
+
 		if(name.length < 8){
 			errors.name = "Charity name too short."
 		} else if(name.length > 64){
@@ -33,6 +69,7 @@ const NewCharity = () => {
 				}
 				if(url.protocol != "https" || url.protocol != "http"){
 					errors.donationLinks = "Invalid donation links.";
+					return;
 				}
 			});
 		}
@@ -42,7 +79,7 @@ const NewCharity = () => {
 
 	return (
 		<Formik
-			initialValues={{ name: '', description: '', donationLinks: '', infoLinks: '' }}
+			initialValues={{ name: '', description: '', donationLinks: '', website: '' }}
 			validate={validate}
 			onSubmit={onSubmit}
 		>
@@ -76,12 +113,12 @@ const NewCharity = () => {
 				
 					<input
 						type="text"
-						name="infoLinks"
+						name="website"
 						onChange={handleChange}
 						onBlur={handleBlur}
-						value={values.infoLinks}
+						value={values.website}
 					/>
-					{errors.infoLinks && touched.infoLinks && errors.infoLinks}
+					{errors.website && touched.website && errors.website}
 
 					<input
 						type="text"

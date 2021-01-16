@@ -5,12 +5,13 @@ import firebase from "firebase";
 
 const SignupPage = () => {
 	
-	const onSubmit = async ({ email, password }, { setSubmitting }) => {
+	const onSubmit = async ({ email, displayName, password }, { setSubmitting }) => {
 		const user = await firebase.auth().createUserWithEmailAndPassword(email, password);
+        window.location = '/dashboard';
 		setSubmitting(false);
 	};
 
-	const validate = ({ email, password }) => {
+	const validate = ({ email, password,displayName }) => {
 		const errors = {};
 
 		if (!email) {
@@ -32,28 +33,35 @@ const SignupPage = () => {
 			onSubmit={onSubmit}
 		>
 			{({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
+				<div className="container">
 				<form onSubmit={handleSubmit}>
 					<input
 						type="text"
 						name="displayName"
 						onChange={handleChange}
 						onBlur={handleBlur}
-						value={values.email}
+						value={values.displayName}
 					/>
 					{errors.displayName && touched.displayName && errors.displayName}
 					
+					<label htmlFor="email">Email:</label>
 					<input
 						type="email"
 						name="email"
+						id="email"
+						placeholder="Email.."
 						onChange={handleChange}
 						onBlur={handleBlur}
 						value={values.email}
 					/>
 					{errors.email && touched.email && errors.email}
 
+					<label htmlFor="password">Password:</label>
 					<input
 						type="password"
 						name="password"
+						placeholder="Password.."
+						id="password"
 						onChange={handleChange}
 						onBlur={handleBlur}
 						value={values.password}
@@ -63,6 +71,7 @@ const SignupPage = () => {
 					<button type="submit" disabled={isSubmitting}> Submit </button>
 					<p>Have an account? <Link href="/login"><a>Login</a></Link></p>
 				</form>
+				</div>
 			)}
 		</Formik>
 	);

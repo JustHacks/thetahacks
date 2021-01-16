@@ -27,6 +27,7 @@ export default function HomePage() { // use arrow functions smh my head (shut) (
 		<main>
             <Head>
                 <title>Pana | Home</title>
+								<link rel="icon" href="../public/images/favicon.ico"/>
             </Head>
 			<Header/>
 			<Hero/>

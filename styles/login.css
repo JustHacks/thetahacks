@@ -4,6 +4,13 @@
 	--btn: rgb(22, 31, 43);
 	--btnHover: rgb(37, 51, 70);
 	--shadowColour: rgb(13, 22, 31);
+	--border: rgb(61, 141, 134);
+	--container: #4444;
+	--mainText: #000;
+}
+
+*, *::before, *::after {
+	box-sizing: border-box;
 }
 
 #bottomText {
@@ -29,27 +36,49 @@ button {
 	background: var(--btn);
 	color: var(--text);
 	transition: .60s;
+	box-shadow: 0px 4px 7px 0px var(--shadowColour);
 }
 
 button:hover {
 	background: var(--btnHover);
 	transition: .60s;
+	transform: scale(1.03);
 }
 
-form {
-	display: flex;
+button:active {
+	background: rgb(36, 49, 66);
+}
+
+.container {
 	width: 60%;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
 	padding: 15px;
-	box-shadow: 0px 18px 12px 0px var(--shadowColour);
+	box-shadow: 0px 11px 18px 0px var(--shadowColour);
 	margin: 0 auto;
+	transform: translateY(50%);
+	background: var(--container);
+	border: 2px solid var(--border);
+	border-radius: 6px;
+	display: flex;
+	justify-content: left;
+	/*align-items: center;*/
+	flex-direction: column;
+	color: var(--mainText);
 }
 
-input {
-	
+.container input {
+	box-shadow: 0px 4px 9px 0px var(--shadowColour);
+	border: 1px solid var(--border);
+	border-radius: 2px;
+	display: block;
+	padding: 5px;
+	margin-top: 6px;
+	margin-bottom: 6px;
+	width: 70%;
 }
 
+.container label {
+	color: var(--text);
+	display: inline-block;
+}
 
 /* u can take all the stuff form that style.css but for login and signup page we wil do their css here other wise it will be messy there */

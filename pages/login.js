@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import Link from 'next/link';
+import Head from 'next/head';
 import { Formik } from "formik";
 import firebase from "firebase";
+
+import Footer from '../components/footer';
 
 const LoginPage = () => {
 	
 	const onSubmit = async ({ email, password }, { setSubmitting }) => {
 		await firebase.auth().signInWithEmailAndPassword(email, password);
+        window.location = '/dashboard';
 		setSubmitting(false);
 	};
 
@@ -26,36 +30,52 @@ const LoginPage = () => {
 	};
 
 	return (
-		<Formik
-			initialValues={{ email: '', password: '' }}
-			validate={validate}
-			onSubmit={onSubmit}
-		>
-			{({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
-				<form onSubmit={handleSubmit}>
-					<input
-						type="email"
-						name="email"
-						onChange={handleChange}
-						onBlur={handleBlur}
-						value={values.email}
-					/>
-					{errors.email && touched.email && errors.email}
+		<>
+		<Head>
+			<title>Pana | Login</title>
+		</Head>
+			<Formik
+				initialValues={{ email: '', password: '' }}
+				validate={validate}
+				onSubmit={onSubmit}
+			>
+				{({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
+				<div className="container">
+					<form onSubmit={handleSubmit}>
+						<label htmlFor="email">Email:</label>
+						<input
+							type="email"
+							name="email"
+							id="email"
+							placeholder="Email.."
+							onChange={handleChange}
+							onBlur={handleBlur}
+							value={values.email}
+						/>
+						{errors.email && touched.email && errors.email}
 
-					<input
-						type="password"
-						name="password"
-						onChange={handleChange}
-						onBlur={handleBlur}
-						value={values.password}
-					/>
-					{errors.password && touched.password && errors.password}
+						<label htmlFor="password">Password:</label>
+						<input
+							type="password"
+							name="password"
+							id="password"
+							placeholder="Password.."
+							onChange={handleChange}
+							onBlur={handleBlur}
+							value={values.password}
+						/>
+						{errors.password && touched.password && errors.password}
 					
-					<button type="submit" disabled={isSubmitting}> Submit </button>
-					<p id="bottomText">Don't have an account? <Link href="/signup"><a>Sign Up</a></Link></p>
-				</form>
-			)}
-		</Formik>
+						<button type="submit" disabled={isSubmitting}> Submit </button>
+						<p id="bottomText">Don't have an account? <Link href="/signup"><a>Sign Up</a></Link></p>
+					</form>
+					</div>
+				)}
+			</Formik>
+			/*<style jsx>{`
+			
+			`}</style>*/
+		</>
 	);
 };
 
