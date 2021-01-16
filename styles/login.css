@@ -1,0 +1,55 @@
+:root {
+	--linkColour: rgb(204, 171, 64);
+	--text: rgb(131, 167, 197);
+	--btn: rgb(22, 31, 43);
+	--btnHover: rgb(37, 51, 70);
+	--shadowColour: rgb(13, 22, 31);
+}
+
+#bottomText {
+	font-size: 8px;
+}
+
+a {
+	color: var(--linkColour);
+	text-decoration: none;
+	transition: 500ms;
+}
+
+a:hover {
+	text-decoration: underline;
+	transition: 500ms;
+}
+
+button {
+	padding: 5px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	background: var(--btn);
+	color: var(--text);
+	transition: .60s;
+}
+
+button:hover {
+	background: var(--btnHover);
+	transition: .60s;
+}
+
+form {
+	display: flex;
+	width: 60%;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	padding: 15px;
+	box-shadow: 0px 18px 12px 0px var(--shadowColour);
+	margin: 0 auto;
+}
+
+input {
+	
+}
+
+
+/* u can take all the stuff form that style.css but for login and signup page we wil do their css here other wise it will be messy there */

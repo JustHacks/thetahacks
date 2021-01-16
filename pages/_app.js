@@ -29,7 +29,7 @@ class App extends React.Component {
 		const { Component, pageProps } = this.props;
 		return <>
 			<Head>
-				<script src="https://kit.fontawesome.com/43c1b0f304.js" crossorigin="anonymous"></script>
+				<script src="https://kit.fontawesome.com/43c1b0f304.js" crossOrigin="anonymous"></script>
 			</Head>
 			<Component {...pageProps}/>
 		</>

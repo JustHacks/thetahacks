@@ -7,19 +7,36 @@ const NewCharity = () => {
 		setSubmitting(false);
 	};
 
-	const validate = ({ email, password }) => {
+	const validate = ({ photo, name, description, donationLinks, infoLinks }) => {
 		const errors = {};
-		/*
-		if (!email) {
-			errors.email = "Required";
-		} else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)) {
-			errors.email = "Invalid email address";
-		} else if (password.length < 8){
-			errors.password = "Password too short.";
-		} else if (password.length > 128){
-			errors.password = "Password too long.";
+		
+		if(name.length < 8){
+			errors.name = "Charity name too short."
+		} else if(name.length > 64){
+			errors.name = "Charity name too long.";
+		} else if(description.length < 32){
+			errors.description = "Description too short.";
+		} else if(description.length > 512){
+			errors.description = "Description too long.";
+		} else if(photo.size > 1024*1024*5){
+			errors.photo = "File too large.";
+		} else {
+			const dLinks = donationLinks.split(",").map(link =>  link.trim()).filter(link => link);
+
+			dLinks.forEach(link => {
+				let url;
+				try {
+					url = new URL(link);
+				} catch(e){
+					errors.donationLinks = "Invalid donation links.";
+					return;
+				}
+				if(url.protocol != "https" || url.protocol != "http"){
+					errors.donationLinks = "Invalid donation links.";
+				}
+			});
 		}
-		*/
+
 		return errors;
 	};
 
@@ -29,8 +46,16 @@ const NewCharity = () => {
 			validate={validate}
 			onSubmit={onSubmit}
 		>
-			{({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
+			{({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting, setFieldValue }) => (
 				<form onSubmit={handleSubmit}>
+					<input
+						type="file"
+						name="photo"
+						onChange={e => setFieldValue("photo", e.target.files[0])}
+						onBlur={handleBlur}
+					/>
+					{errors.photo && touched.photo && errors.photo}
+					
 					<input
 						type="text"
 						name="name"

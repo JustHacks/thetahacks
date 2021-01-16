@@ -5,7 +5,10 @@ import Image from "next/image";
 import firebase from "firebase";
 
 import Header from "../components/header";
+import Footer from "../components/footer";
+import About from "../components/about";
 import Hero from "../components/hero";
+import WCard from "../components/wcard";
 
 export default function HomePage() { // use arrow functions smh my head (shut) (you shut) (yo momma shut) (not you smh idot) (unless you wrote "shut") (perhaps I did)
 	const [currentUser, setCurrentUser] = useState(null);
@@ -27,6 +30,8 @@ export default function HomePage() { // use arrow functions smh my head (shut) (
             </Head>
 			<Header/>
 			<Hero/>
+			<WCard/>
+            <About/>
             <nav>
                 <Link href="/dashboard">
                     <a>
@@ -35,7 +40,7 @@ export default function HomePage() { // use arrow functions smh my head (shut) (
                 </Link>
             </nav>
 			
-			{currentUser}
+            <Footer/>
 		</main>
 	);
 };

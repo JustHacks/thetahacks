@@ -52,7 +52,7 @@ const LoginPage = () => {
 					{errors.password && touched.password && errors.password}
 					
 					<button type="submit" disabled={isSubmitting}> Submit </button>
-					<p>Don't have an account? <Link href="/signup"><a>Sign Up</a></Link></p>
+					<p id="bottomText">Don't have an account? <Link href="/signup"><a>Sign Up</a></Link></p>
 				</form>
 			)}
 		</Formik>
