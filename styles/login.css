@@ -1,20 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+
 :root {
-	--linkColour: rgb(204, 171, 64);
-	--text: rgb(131, 167, 197);
-	--btn: rgb(22, 31, 43);
-	--btnHover: rgb(37, 51, 70);
-	--shadowColour: rgb(13, 22, 31);
+	--linkColour: rgb(129, 112, 55);
+	--text: #FFFF;
+	--btn: #3dc2a3;
+	--btnHover: #369b83;
+	--shadowColour: #0000003d;
 	--border: rgb(61, 141, 134);
-	--container: #4444;
-	--mainText: #000;
+	--container: #FFFF;
+	--mainText: rgb(19, 19, 19);
 }
 
 *, *::before, *::after {
 	box-sizing: border-box;
 }
 
+body, html {
+	background: rgb(180, 207, 209); 
+}
+
 #bottomText {
-	font-size: 8px;
+	font-size: 14px;
+	display: inline-block;
+	white-space: nowrap;
 }
 
 a {
@@ -29,20 +37,22 @@ a:hover {
 }
 
 button {
-	padding: 5px;
+	padding: 6px 7px;
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
 	background: var(--btn);
 	color: var(--text);
-	transition: .60s;
-	box-shadow: 0px 4px 7px 0px var(--shadowColour);
+	transition: 230ms;
+	width: fit-content;
+	font-size: 21px;
+	margin-top: 9px !important;
+	margin: 0 auto;
 }
 
 button:hover {
 	background: var(--btnHover);
-	transition: .60s;
-	transform: scale(1.03);
+	transition: 230ms;
 }
 
 button:active {
@@ -50,35 +60,59 @@ button:active {
 }
 
 .container {
-	width: 60%;
-	padding: 15px;
-	box-shadow: 0px 11px 18px 0px var(--shadowColour);
+	width: 50%;
+	padding: 13px;
+	box-shadow: 0px 17px 25px 0px var(--shadowColour);
 	margin: 0 auto;
 	transform: translateY(50%);
 	background: var(--container);
-	border: 2px solid var(--border);
 	border-radius: 6px;
 	display: flex;
-	justify-content: left;
-	/*align-items: center;*/
+	justify-content: center;
+	align-items: center;
 	flex-direction: column;
 	color: var(--mainText);
+	max-width: 600px;
 }
 
 .container input {
-	box-shadow: 0px 4px 9px 0px var(--shadowColour);
-	border: 1px solid var(--border);
-	border-radius: 2px;
+	border-radius: 3px;
 	display: block;
 	padding: 5px;
-	margin-top: 6px;
-	margin-bottom: 6px;
-	width: 70%;
+	margin-top: 7px;
+	margin-bottom: 7px;
+	width: 100%;
+	height: 35px;
+	transition: 200ms;
+	font-size: 18px;
+  border: 3px solid transparent;
+	background: rgb(180, 207, 209);
+}
+
+.container input::placeholder {
+	color: #fff;
+}
+
+.container input:focus {
+	transition: 200ms;
+	border: 3px solid rgba(47, 133, 148, 0.459);
+	outline: none;
+	box-shadow: 0px 0px 1px inset var(--shadowColour);
 }
 
 .container label {
-	color: var(--text);
+	color: var(--mainText);
 	display: inline-block;
 }
 
-/* u can take all the stuff form that style.css but for login and signup page we wil do their css here other wise it will be messy there */
+h1 {
+	text-align: center;
+	font-family: 'Poppins', sans-serif;
+	font-weight: 800;
+	font-size: 35pt;
+}
+
+@media screen and (max-width: 480px) {
+	.container {width: 93%;}
+	.container input{width: 100%}
+}
