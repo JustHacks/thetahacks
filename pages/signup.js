@@ -4,7 +4,11 @@ import Link from 'next/link';
 import firebase from "firebase";
 
 const SignupPage = () => {
-	
+    const user = firebase.auth().currentUser;
+    if (user) {
+        window.location = '/dashboard'; // is this the right way to do this?
+    }
+
 	const onSubmit = async ({ email, displayName, password }, { setSubmitting }) => {
 		const user = await firebase.auth().createUserWithEmailAndPassword(email, password);
         window.location = '/dashboard';

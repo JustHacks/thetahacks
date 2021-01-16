@@ -4,7 +4,7 @@ const wCard = () => {
 	return (
 		<div className="card-area">
             <div className="w-card">
-            <img src="https://avatars1.githubusercontent.com/u/47777673?s=460&u=b787dfafbb4af3164549369e6a591e5c3e99bfde&v=4" alt="orgImg" />
+            <img src="/images/env.jpg" alt="orgImg" />
             <div className="card-text">
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae ipsa, libero blanditiis numquam modi beatae voluptat</p>
             <div className="btns">
@@ -14,7 +14,7 @@ const wCard = () => {
             </div>
 
             <div className="w-card">
-            <img src="https://avatars1.githubusercontent.com/u/47777673?s=460&u=b787dfafbb4af3164549369e6a591e5c3e99bfde&v=4" alt="orgImg" />
+            <img src="images/doc.jpg" alt="orgImg" />
             <div className="card-text">
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae ipsa, libero blanditiis numquam modi beatae voluptat</p>
             <div className="btns">
@@ -24,7 +24,7 @@ const wCard = () => {
             </div>
 
             <div className="w-card">
-            <img src="https://avatars1.githubusercontent.com/u/47777673?s=460&u=b787dfafbb4af3164549369e6a591e5c3e99bfde&v=4" alt="orgImg" />
+            <img src="images/edu.jpg" alt="orgImg" />
             <div className="card-text">
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae ipsa, libero blanditiis numquam modi beatae voluptat</p>
             <div className="btns">

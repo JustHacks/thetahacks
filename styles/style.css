@@ -17,6 +17,9 @@
     padding: 0;
     color: var(--text);
 }
+h1, h2, h3, h4, h5, h6{
+    font-weight: normal;
+}
 
 body, html  {
 	background: rgb(180, 207, 209); 
@@ -58,7 +61,6 @@ body, html  {
 
 input{
     border: none;
-		/*font-size: 13px;*/
 }
 
 .fas:hover {
@@ -82,7 +84,7 @@ input{
     flex-direction: column;
     background-position-y: center;
     background-size: cover;
-
+    text-align: center;
 }
 
 .hero h1, h4{
@@ -161,13 +163,14 @@ hr{
 
 .w-card{
     width: 500px;
-    height:  170px;
+    height:  200px;
     padding: 10px;
-    background: var(--white);
-	display:flex;
     margin: 30px 0;
-    box-shadow: var(--shadow);
     margin-left: 20%;
+	display:flex;
+    background: var(--white);
+    box-shadow: var(--shadow);
+    position: relative;
 }
 
 .w-card:nth-child(2){
@@ -175,20 +178,21 @@ hr{
 }
 
 .w-card img{
-    width: 150px;
-	height: 150px;
+	height: 100%;
+    width: 200px;
 }
 
 .card-text p{
-	height: 110px;
+	height: 130px;
 	padding-left: 10px;
 	margin-bottom: 10px;
 	overflow: hidden;
 }
 
 .card-text .btns{
-	position: relative;
-	bottom: -1px;
+	position: absolute;
+	bottom: 15px;
+    padding-left: 5px;
 }
 
 /* footer */
@@ -197,16 +201,43 @@ hr{
     width: 100%;
     height: 100%;
     background: var(--main);
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 10px;
+}
+
+.footer *{
+    color: var(--white);
 }
 
 .footer .fab{
     font-size: 30px;
-    color: var(--white);
+}
+
+.links{
+	display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+ul {
+	list-style-type: none;
+    margin: 10px 20px;
+}
+
+ul h3{
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+ul li{
+    font-size: 16px;
 }
 
 /* scrollbar */
 
-/*make w i d e r*/
+/*make w i d e r*/ 
+/* no u */
 
 ::-webkit-scrollbar {
 	width: 7px;
@@ -303,7 +334,7 @@ hr{
     
     .card-text p{
 		height: 100%;
-		padding: 10px 0;
+		padding: 10px 0 20px 0;
 		overflow: visible;
     }
 	
@@ -317,6 +348,7 @@ hr{
     }
     
 	.card-text .btns{
+        position: relative;
         display: flex;
         align-items: center;
         justify-content: space-evenly;

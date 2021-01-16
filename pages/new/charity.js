@@ -4,11 +4,13 @@ import firebase from "firebase";
 import { charityWrite } from "../../lib/api";
 
 const NewCharity = () => {
-	
+	const user = firebase.auth().currentUser;
+    if (!user) {
+        window.location = '/login'; // is this the right way to do this?
+    }
 	const onSubmit = async ({ donationLinks, description, website, name, tags, photo }, { setSubmitting }) => {
-		const user = firebase.auth().currentUser;
-        if (!user) {
-            window.location = '/login'; // is this the right way to do this?
+    	const user = firebase.auth().currentUser;if (!user) {
+            window.location = '/login'; // isthis the right way to do this?
         }
         const reader = new FileReader();
         reader.addEventListener('load', async () => {

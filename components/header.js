@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from 'next/link';
 
 const Header = () => {
     const [hamburger, setHamburger] = useState(false);
@@ -12,8 +13,12 @@ const Header = () => {
                     <div className="search-bar">
                         <input type="text" placeholder="Search.."/><i className="fas fa-search"></i>
                     </div>
-                    <a className="btn primary-btn" href="">Login</a>
-                    <a className="btn secondary-btn" href="">Create</a>
+                    <Link href="login">
+                        <a className="btn primary-btn" >Login</a>
+                    </Link>
+                    <Link href="/new/charity">
+                        <a className="btn secondary-btn" >Create</a>
+                    </Link>
                     
 					<div className={`hamburger ${hamburger ? 'hamburger-active' : ''}`}>
                         <i className="fas fa-bars" onClick={() => setHamburger(true)}></i>

@@ -7,7 +7,11 @@ import firebase from "firebase";
 import Footer from '../components/footer';
 
 const LoginPage = () => {
-	
+    const user = firebase.auth().currentUser;
+    if (user) {
+        window.location = '/dashboard'; // is this the right way to do this?
+    }
+
 	const onSubmit = async ({ email, password }, { setSubmitting }) => {
 		await firebase.auth().signInWithEmailAndPassword(email, password);
         window.location = '/dashboard';
