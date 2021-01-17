@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import firebase from "firebase";
+import Head from 'next/head';
 
 const Profile = () => {
 	
@@ -12,6 +13,9 @@ const Profile = () => {
 
 	return (
 		<div>
+			<Head>
+				<title>Pana | { displayName }</title>
+			</Head>
 		</div>
 	)
 };

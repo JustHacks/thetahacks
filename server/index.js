@@ -119,7 +119,7 @@ server.post('/api/charities/write', async (req, res) => {
 	} else {
 		// charities/{name}/photo.{ext}
         const naive = photo.name.split(".")[1];
-        const type = VALID_TYPES.includes(naive) ? naive : 'png';
+        const type = VALID_TYPES.includes(naive) ? naive : 'png'; // i updated this but we could change it back if you want
 		//const photoUrl = admin.storage().ref().child(`charities/${name}/photo.${type}`).put(photo.data /*or smth*/).getDownloadURL();
 		await database.writeCharity(new db.Charity(name, '', owner, desc, website, tags, links));
 	

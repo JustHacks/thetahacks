@@ -18,7 +18,7 @@ export default function HomePage() { // use arrow functions smh my head (shut) (
                 <title>Pana | Dashboard</title>
             </Head>	
             <nav>
-                <Link href="/login/login">
+                <Link href="/login">
                     <a>Login</a>
                 </Link>
                 <input type="text" placeholder="Search..." />
