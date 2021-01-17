@@ -42,7 +42,7 @@ const NewCharity = () => {
 		setSubmitting(false);
 	};
 
-	const validate = ({ photo, name, description, donationLinks, website }) => {
+	const validate = ({ photo, name, description, donationLinks, website, tags }) => {
 		const errors = {};
 		
 		let url;
@@ -70,17 +70,31 @@ const NewCharity = () => {
 		} else {
 			const dLinks = donationLinks.split(",").map(link =>  link.trim()).filter(link => link);
 
-			dLinks.forEach(link => {
+			const t = dLinks.some(link => {
 				let url;
 				try {
 					url = new URL(link);
 				} catch(e){
 					errors.donationLinks = "Invalid donation links.";
-					return;
+					return true;
 				}
 				if(url.protocol != "https" || url.protocol != "http"){
 					errors.donationLinks = "Invalid donation links.";
-					return;
+					return true;
+				}
+			});
+			if(t) return;
+
+			const sTags = tags.split(",").map(tag => tag.trim()).filter(tag => tag);
+
+			if(sTags.length > 10){
+				errors.tags = "Too many tags";
+				return;
+			}
+			sTags.some((tag) => {
+				if(!(/[a-zA-Z0-9-]+/.match(tag))){
+					errors.tags = "Invalid tag";
+					return true;
 				}
 			});
 		}
@@ -139,6 +153,15 @@ const NewCharity = () => {
 						value={values.donationLinks}
 					/>
 					{errors.donationLinks && touched.donationLinks && errors.donationLinks}
+
+					<input
+						type="text"
+						name="tags"
+						onChange={handleChange}
+						onBlur={handleBlur}
+						value={values.tags}
+					/>
+					{errors.tags && touched.tags && errors.tags}
 
 					<button type="submit" disabled={loaded && isSubmitting}> Submit </button>
 				</form>

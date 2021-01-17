@@ -3,6 +3,7 @@ import { Formik } from "formik";
 import Link from 'next/link';
 import firebase from "firebase";
 import styles from "./form.module.css";
+import buttonStyles from './button.module.css';
 
 const SignupForm = () => {
 	useEffect(() => {
@@ -41,19 +42,24 @@ const SignupForm = () => {
 			onSubmit={onSubmit}
 		>
 			{({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
-				<div className="container">
+				<div className={styles.container}>
+				<h1 className={styles.headerOne}>Sign Up</h1>
 				<form onSubmit={handleSubmit}>
+					<label htmlFor="displayName">Display Name</label>
 					<input
-						type="text"
-						name="displayName"
-						onChange={handleChange}
-						onBlur={handleBlur}
-						value={values.displayName}
+					type="text"
+					name="displayName"
+					placeholder="Display.."
+					id="displayName"
+					onChange={handleChange}
+					onBlur={handleBlur}
+					value={values.displayName}
 					/>
 					{errors.displayName && touched.displayName && errors.displayName}
 					
-					<label htmlFor="email">Email:</label>
-					<input
+					<div className={styles.wrap}>
+						<label htmlFor="email">Email:</label>
+						<input
 						type="email"
 						name="email"
 						id="email"
@@ -61,11 +67,13 @@ const SignupForm = () => {
 						onChange={handleChange}
 						onBlur={handleBlur}
 						value={values.email}
-					/>
+						/>
+					</div>
 					{errors.email && touched.email && errors.email}
 
-					<label htmlFor="password">Password:</label>
-					<input
+					<div className={styles.wrap}>
+						<label htmlFor="password">Password:</label>
+						<input
 						type="password"
 						name="password"
 						placeholder="Password.."
@@ -73,11 +81,12 @@ const SignupForm = () => {
 						onChange={handleChange}
 						onBlur={handleBlur}
 						value={values.password}
-					/>
+						/>
+					</div>
 					{errors.password && touched.password && errors.password}
 					
-					<button type="submit" disabled={isSubmitting}> Submit </button>
-					<p>Have an account? <Link href="/login"><a>Login</a></Link></p>
+					<button className={`${styles.submitButton} ${buttonStyles.btn} ${buttonStyles.primaryBtn} `} type="submit" disabled={isSubmitting}> Submit </button>
+					<p className={styles.bottomText}>Have an account? <Link href="/login"><a>Login</a></Link></p>
 				</form>
 				</div>
 			)}

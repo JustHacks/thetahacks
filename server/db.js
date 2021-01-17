@@ -23,7 +23,7 @@ class User {
 
 class Charity {
     constructor(name, photo, owner, desc, website, tags, links) {
-		this.id = name.replace(/[^A-Za-z0-9- ]/g, '-') + "-" Math.random().toString();
+		this.id = name.toLowerCase().replace(/[^A-Za-z0-9-]/g, '-'); Math.random().toString();
         this.name = name;
         this.photo = photo;
         this.owner = owner.replace(/[^A-Za-z0-9- ]/g, '');
@@ -62,8 +62,8 @@ class Database {
         await this.db.run("INSERT INTO users VALUES (?, ?, ?, ?)", user.name, user.email, user.hash, user.photo);
     }
 
-    async readCharity(name) {
-        const row = await this.db.get("SELECT photo, owner, desc, website, tags, links FROM charities WHERE name=?", name);
+    async readCharity(id) {
+        const row = await this.db.get("SELECT photo, owner, desc, website, tags, links FROM charities WHERE id=?", id);
        
 	    if (!row) {
             return undefined;
@@ -72,12 +72,12 @@ class Database {
     }
 
     async readCharityFromId(id) {
-        const row = await this.db.get("SELECT photo, owner, desc, website, tags, links FROM charities WHERE id=?", id);
+        const row = await this.db.get("SELECT name, photo, owner, desc, website, tags, links FROM charities WHERE id=?", id);
        
 	    if (!row) {
             return undefined;
         }
-        return new Charity(name, row.photo, row.owner, row.desc, row.website, row.tags, row.links);
+        return new Charity(row.name, row.photo, row.owner, row.desc, row.website, row.tags, row.links);
     }
 	
     async writeCharity(charity) {

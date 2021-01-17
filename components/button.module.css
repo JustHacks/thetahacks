@@ -1,10 +1,19 @@
-
 .btn{
     padding: 4px 15px;
     cursor: pointer;
     transition: .2s ease-in-out;
-    margin: 0 5px;
     text-align: center;
+}
+
+.primaryBtn {
+    color: var(--white);
+    background: var(--main);
+    border: 2px solid var(--main);
+}
+
+.primaryBtn:hover{
+    background: var(--maindark); 
+    border-color:var(--maindark); 
 }
 
 .primary-btn {

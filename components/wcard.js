@@ -1,4 +1,5 @@
 import React from "react";
+import styles from './modal.module.css';
 
 const wCard = () => {
 	return (
@@ -42,7 +43,10 @@ const wCard = () => {
 				</div>
             </div>
 					<div id="modal" className="modal">
-						<div className="modalContent">
+					// ow watcha doin cow (u mean sugar i think perhaps)
+					// ow ya sugar?
+					// anyways you are supposed to make a file with styles and import it yk
+						<div className={styles.modalContent}>
 							<span className="close">X</span>
 							<p>	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare elementum nunc, eget pulvinar felis aliquet at. Suspendisse a eleifend mauris, et pretium sapien. Donec tempus interdum tortor nec mattis. Duis eu nibh porta libero blandit rhoncus quis quis augue.</p>
 						</div>

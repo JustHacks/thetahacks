@@ -84,8 +84,8 @@ server.post('/api/users/logout', async (req, res) => {
 */
 
 server.post('/api/charities/read', async (req, res) => {
-	const { name } = req.body;
-	const charity = await database.readCharity(name);
+	const { id } = req.body;
+	const charity = await database.readCharityFromId(id);
 
 	if (!charity) {
 		res.json({ ok: false, reason: "Charity doesn't exist" });

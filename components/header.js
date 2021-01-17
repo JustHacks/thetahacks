@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
 import Link from 'next/link';
 import firebase from "firebase";
+import SearchBar from "./searchBar";
 
 const Header = () => {
     const [hamburger, setHamburger] = useState(false);
 	const [isLoggedIn, setLoggedIn] = useState(false);
 
 	useEffect(() => {
-		const user = firebase.auth().currentUser;
-		
-		if(user){
-			setLoggedIn(true);
-		}
+		firebase.auth().onAuthStateChanged(() => {
+			if (firebase.auth().currentUser) {
+				setLoggedIn(true);
+			}
+		});
 	}, []);
 
 	return (
@@ -20,11 +21,9 @@ const Header = () => {
                 <img src="/images/logo.png" alt="logo"/>
             </div>
                 <div className="nav">
-                    <div className="search-bar">
-                        <input type="text" placeholder="Search.."/><i className="fas fa-search"></i>
-                    </div>
-					{
-						isLoggedIn ?
+					<SearchBar />
+				  	{
+						!isLoggedIn ?
 						<>
 							<Link href="/login">
 								<a className="btn primary-btn" >Login</a>
@@ -34,7 +33,7 @@ const Header = () => {
 							</Link>
 						</> :
 						<>
-							<Link href="/new/charity">
+							<Link href="/charity/new">
 								<a className="btn primary-btn" >Create</a>
 							</Link>
 							<Link href="/logout">
