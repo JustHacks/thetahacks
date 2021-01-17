@@ -1,0 +1,8 @@
+.charities > li {
+    color: red;
+    background: var(--main);
+}
+
+.charities h3{
+    color: yellow;
+}

@@ -94,6 +94,12 @@
 	transition: 500ms;
 }
 
+.formError{
+    color: red;
+    text-align: end;
+    font-size: 14px;
+}
+
 @media screen and (max-width: 480px) {
 	.container {width: 93%;}
 	.container input{width: 100%}

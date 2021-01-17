@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import Footer from '../components/footer';
 import firebase from "firebase";
 import SearchBar from "../components/searchBar";
+import styles from "../styles/dashboard.module.css";
 
 export default function HomePage() { // use arrow functions smh my head (shut) (you shut) (yo momma shut) (not you smh idot) (unless you wrote 'shut') (perhaps I did)
     const [charities, setCharities] = useState([]);
@@ -31,19 +32,16 @@ export default function HomePage() { // use arrow functions smh my head (shut) (
                 <title>Pana | Dashboard</title>
             </Head>	
             <nav>
-                <Link href="/login">
-                    <a>Login</a>
-                </Link>
-                <input type="text" placeholder="Search..." />
+                <SearchBar onSearch={(res) => {
+                    setCharities(res.data);
+                }} />
                 <Link href="/charity/new">
                     <a className="btn-secondary btn">Create Fund</a>
                 </Link>
             </nav>
             <article>
-                <SearchBar onSearch={(res) => {
-                    setCharities(res.data);
-                 }} />
-                <ul>
+
+                <ul className={styles.charities}>
                 {
                     charities.size == 0 ? 'Loading...' : charities.map(item => 
                         <li>
@@ -51,9 +49,9 @@ export default function HomePage() { // use arrow functions smh my head (shut) (
                                 <h3>{item.name}</h3>
                             </Link>
                             <p>
-                            {item.desc.slice(0, 100) + item.desc.lenggth >= 100 ? '...' : ''}
+                            {item.desc.slice(0, 100)}
                             </p>
-                            <ul>
+                            <ul className={styles.tags}>
                                 {
                                     item.tags.split(' ').map(tag =>
                                     <li>{tag}</li>)

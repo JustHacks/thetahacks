@@ -280,6 +280,16 @@ ul li{
     padding-top: 20px;
 }
 
+/* dashboard */
+
+.tags {
+    display: flex;
+}
+
+.tags > li {
+    margin: 0 10px;
+}
+
 /* scrollbar */
 
 ::-webkit-scrollbar {

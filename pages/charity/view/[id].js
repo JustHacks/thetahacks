@@ -35,6 +35,12 @@ const ViewCharityPage = () => {
 					)
 				}
 			</ul>
+            <ul class="tags">
+            {
+                charity.tags.split(' ').map(item => 
+                <li>{item}</li>)
+            }
+            </ul>
 		</main>
 		:
 		error ?

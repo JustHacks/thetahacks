@@ -59,7 +59,7 @@ const LoginForm = () => {
 							value={values.email}
 							/>
 						</div>
-						{errors.email && touched.email && errors.email}
+						<div className={styles.formError}>{errors.email && touched.email && errors.email}</div>
 						
 						<div className={styles.wrap}>
 							<label htmlFor="password">Password:</label>
@@ -73,7 +73,10 @@ const LoginForm = () => {
 							value={values.password}
 							/>
 						</div>
-						{errors.password && touched.password && errors.password}<br/>
+                        
+						<div className={styles.formError}>
+                        {errors.password && touched.password && errors.password}
+                        </div>
 
 						<button className={`${styles.submitButton} ${buttonStyles.btn} ${buttonStyles.primaryBtn}`} type="submit" disabled={isSubmitting}> Submit </button> <br />
 						
