@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Formik } from "formik";
 import Link from 'next/link';
+import Head from 'next/head';
 import firebase from "firebase";
 
 const SignupPage = () => {
@@ -31,6 +32,11 @@ const SignupPage = () => {
 	};
 
 	return (
+		<>
+		<Head>
+			<title>Pana | Sign-up</title>
+			<link rel="stylesheet" href="../styles/login.css" />
+		</Head>
 		<Formik
 			initialValues={{ email: '', password: '', displayName: '' }}
 			validate={validate}
@@ -78,6 +84,7 @@ const SignupPage = () => {
 				</div>
 			)}
 		</Formik>
+		</>
 	);
 };
 

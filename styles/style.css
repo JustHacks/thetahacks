@@ -182,11 +182,18 @@ hr{
     width: 200px;
 }
 
+.card-text h4{
+    font-size: 18px;
+    padding-left: 10px;
+    color: var(--main);
+}
+
 .card-text p{
 	height: 130px;
 	padding-left: 10px;
 	margin-bottom: 10px;
 	overflow: hidden;
+    font-size: 15px;
 }
 
 .card-text .btns{
@@ -339,7 +346,7 @@ ul li{
         margin-right: 0;
     }
     
-    .card-text p{
+    .card-text p, h{
 		height: 100%;
 		padding: 10px 0 20px 0;
 		overflow: visible;
