@@ -23,11 +23,11 @@ const LoginForm = () => {
 		const errors = {};
 
 		if (!email) {
-			errors.email = "Required";
+			errors.email = "*Required";
 		} else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)) {
 			errors.email = "Invalid email address";
 		} else if (!password){
-			errors.password = "Required";
+			errors.password = "*Required";
 		} else if (password.length < 8){
 			errors.password = "Password too short.";
 		} else if (password.length > 128){
