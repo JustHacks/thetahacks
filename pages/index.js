@@ -26,20 +26,13 @@ export default function HomePage() { // use arrow functions smh my head (shut) (
 		<main>
             <Head>
                 <title>Pana | Home</title>
-								<link rel="icon" href="../public/images/favicon.ico"/>
+				<link rel="icon" href="../images/favicon.ico"/>
             </Head>
+			
 			<Header/>
 			<Hero/>
 			<WCard/>
             <About/>
-            <nav>
-                <Link href="/dashboard">
-                    <a>
-                        Dashboard
-                    </a>
-                </Link>
-            </nav>
-			
             <Footer/>
 		</main>
 	);

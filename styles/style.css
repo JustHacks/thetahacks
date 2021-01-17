@@ -300,7 +300,7 @@ ul li{
 	transition: 2s;
 }
 
-/* responsive */
+
 .logo {
     display: flex;
     align-items: center;
@@ -311,6 +311,8 @@ ul li{
     list-style-type: none;
 }
 
+/* responsive */
+
 @media (max-width: 600px) {
     .logo > img {
         max-height: 30px;
@@ -318,6 +320,15 @@ ul li{
     
     .nav > .btn {
         display: none;
+    }
+
+    .nav a{
+        display: flex;
+        margin-top: 10px;
+    }
+    
+    .nav ul{
+        margin: 0;
     }
 
     .nav > .hamburger {
@@ -332,11 +343,12 @@ ul li{
         left: 0;
         width: 100vw;
         height: 100vh;
-        background-color: rgba(255, 255, 255, 0.95);
+        background-color: var(--white);
         color: black;
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        z-index: 4;
     }
 
     .nav > .hamburger.hamburger-active > .contents > .close {
@@ -346,6 +358,7 @@ ul li{
     }
 }
 
+/* responsive cards */
 @media (max-width: 700px){
     .card-area,
     .w-card{
