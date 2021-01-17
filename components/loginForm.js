@@ -3,22 +3,21 @@ import Link from 'next/link';
 import Head from 'next/head';
 import { Formik } from "formik";
 import firebase from "firebase";
-import styles from "./loginForm.module.css";
+import styles from "./form.module.css";
+import buttomStyles from "./buttom.module.css";
 
 const LoginForm = () => {
-    
 	useEffect(() => {
-		const user = firebase.auth().currentUser;
-		if (user) {
-			window.location = '/dashboard'; // is this the right way to do this?
-		}
+		firebase.auth().onAuthStateChanged(() => {
+			if (firebase.auth().currentUser) {
+				window.location = '/dashboard'; // is this the right way to do this?
+			}
+		});
 	}, []);
 
 	const onSubmit = async ({ email, password }, { setSubmitting }) => {
 		await firebase.auth().signInWithEmailAndPassword(email, password);
-        window.location = '/dashboard';
-		setSubmitting(false);
-	};
+    };
 
 	const validate = ({ email, password }) => {
 		const errors = {};
@@ -43,6 +42,7 @@ const LoginForm = () => {
 		>
 			{({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
 				<div className={styles.container}>
+				<h1 className={styles.headerOne}>Login</h1>
 					<form onSubmit={handleSubmit}>
 						<div className={styles.wrap}>
 							<label htmlFor="email">Email:</label>
@@ -72,8 +72,12 @@ const LoginForm = () => {
 						</div>
 						{errors.password && touched.password && errors.password}
 				
-						<button className={styles.submitButton} type="submit" disabled={isSubmitting}> Submit </button>
-						<p className={styles.bottomText}>Don't have an account? <Link  href="/signup"><a>Sign Up</a></Link></p>
+						<button className={styles.submitButton + " btn primary-btn"} type="submit" disabled={isSubmitting}> Submit </button>
+						
+						<p className={styles.bottomText}>
+							Don't have an account? 
+							<Link href="/signup"><a className={styles.link}>Sign Up</a></Link>
+						</p>
 					</form>
 				</div>
 			)}

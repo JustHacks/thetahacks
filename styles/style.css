@@ -117,7 +117,7 @@ input{
 .primary-btn:hover{
     background: var(--maindark); 
     border-color:var(--maindark); 
-    }
+}
 
 .secondary-btn {
     color: var(--main);
@@ -125,7 +125,9 @@ input{
     border: 2px solid var(--main);
 }
 
-.secondary-btn:hover{background: var(--opaque);}
+.secondary-btn:hover{
+	background: var(--opaque);
+}
 
 .tertiary-btn {
     color: var(--white);
@@ -133,9 +135,11 @@ input{
     border: 2px solid var(--white);
 }
 
-.tertiary-btn:hover{background: var(--shadow-color)}
+.tertiary-btn:hover {
+	background: var(--shadow-color)
+}
 
-.btn:focus{
+.btn:focus {
     outline: transparent;
 }
 

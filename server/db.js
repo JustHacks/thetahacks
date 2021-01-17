@@ -23,7 +23,8 @@ class User {
 
 class Charity {
     constructor(name, photo, owner, desc, website, tags, links) {
-        this.name = name.replace(/[^A-Za-z0-9- ]/g, '');
+		this.id = name.replace(/[^A-Za-z0-9- ]/g, '-') + "-" Math.random().toString();
+        this.name = name;
         this.photo = photo;
         this.owner = owner.replace(/[^A-Za-z0-9- ]/g, '');
         this.desc = desc;
@@ -45,7 +46,7 @@ class Database {
             driver: sqlite3.Database
         });
         await db.run("CREATE TABLE IF NOT EXISTS users (name text, email text, hash text, photo text)");
-        await db.run("CREATE TABLE IF NOT EXISTS charities (name text, photo text, owner text, desc text, website text, tags text, links text)");
+        await db.run("CREATE TABLE IF NOT EXISTS charities (id text, name text, photo text, owner text, desc text, website text, tags text, links text)");
         return new Database(filename, db);
     }
 
@@ -63,14 +64,24 @@ class Database {
 
     async readCharity(name) {
         const row = await this.db.get("SELECT photo, owner, desc, website, tags, links FROM charities WHERE name=?", name);
-        if (!row) {
+       
+	    if (!row) {
             return undefined;
         }
         return new Charity(name, row.photo, row.owner, row.desc, row.website, row.tags, row.links);
     }
 
+    async readCharityFromId(id) {
+        const row = await this.db.get("SELECT photo, owner, desc, website, tags, links FROM charities WHERE id=?", id);
+       
+	    if (!row) {
+            return undefined;
+        }
+        return new Charity(name, row.photo, row.owner, row.desc, row.website, row.tags, row.links);
+    }
+	
     async writeCharity(charity) {
-        await this.db.run("INSERT INTO charities VALUES (?, ?, ?, ?, ?, ?, ?)", charity.name, charity.photo, charity.owner, charity.desc, charity.website, charity.tags, charity.links);
+        await this.db.run("INSERT INTO charities VALUES (?, ?, ?, ?, ?, ?, ?, ?)", charity.id, charity.name, charity.photo, charity.owner, charity.desc, charity.website, charity.tags, charity.links);
     }
 
     async filterCharity(name, tags) {

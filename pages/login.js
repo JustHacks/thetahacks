@@ -6,13 +6,13 @@ import LoginForm from "../components/loginForm";
 const LoginPage = () => {
     
 	return (
-		<div>
-		<Head>
-			<title>Pana | Login</title>
-			<link rel="stylesheet" href="../styles/login.css"/>
-		</Head>
-		<LoginForm />
-		</div>
+		<>
+			<Head>
+				<title>Pana | Login</title>
+				<link rel="stylesheet" href="../styles/login.css"/>
+			</Head>
+			<LoginForm />
+		</>
 	);
 };
 
