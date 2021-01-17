@@ -20,8 +20,8 @@ const Header = () => {
             <div className="logo">
                 <img src="/images/logo.png" alt="logo"/>
             </div>
+            <h2 id="title">Pana</h2>
                 <div className="nav">
-					<SearchBar />
 				  	{
 						!isLoggedIn ?
 						<>

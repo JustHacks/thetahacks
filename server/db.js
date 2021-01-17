@@ -30,7 +30,7 @@ class Charity {
         this.desc = desc;
         this.website = website.replace(/[^A-Za-z0-9-/:?&. ]/g, '');
         this.tags = tags.replace(/[^A-Za-z0-9- ]/g, '');
-        this.links = links.replace(/[^a-zA-Z0-9-:\/?&,]/, '');
+        this.links = links.replace(/[^a-zA-Z0-9-:\/?&,.]/, '');
     }
 }
 

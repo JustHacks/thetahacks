@@ -41,8 +41,7 @@ export default function HomePage() { // use arrow functions smh my head (shut) (
             </nav>
             <article>
                 <SearchBar onSearch={(res) => {
-                    console.log(res);
-                    setCharities(res);
+                    setCharities(res.data);
                  }} />
                 <ul>
                 {

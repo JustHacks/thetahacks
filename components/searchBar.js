@@ -31,13 +31,12 @@ const SearchBar = ({ onSearch }) => {
 				}
 			}
 		}
-        console.log('aaaah');
-		charitySearch({ name, tags }).then(onSearch);
+		charitySearch({ name, tags: tags.slice(1).join(' ') }).then(onSearch);
     };
 	
 	return (
 		<Formik
-			initialValues={{ email: '', password: '' }}
+			initialValues={{ text: '' }}
 			validate={() => {}}
 			onSubmit={onSubmit}
 		>
@@ -48,7 +47,7 @@ const SearchBar = ({ onSearch }) => {
 						name="text"
 						placeholder="Search.."
 						value={values.text}
-						onChange={handleSubmit}
+						onChange={({ ...props }) => handleChange({ ...props }) || handleSubmit({ ...props })}
 					/>
 					<i className="fas fa-search" onClick={handleSubmit}></i>
 				</div>

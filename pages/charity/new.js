@@ -121,6 +121,7 @@ const NewCharity = () => {
 					<input
 						type="text"
 						name="name"
+                        placeholder="Name..."
 						onChange={handleChange}
 						onBlur={handleBlur}
 						value={values.name}
@@ -130,6 +131,7 @@ const NewCharity = () => {
 					<textarea
 						type="text"
 						name="description"
+                        placeholder="Description..."
 						onChange={handleChange}
 						onBlur={handleBlur}
 						value={values.description}
@@ -139,6 +141,7 @@ const NewCharity = () => {
 					<input
 						type="text"
 						name="website"
+                        placeholder="Website..."
 						onChange={handleChange}
 						onBlur={handleBlur}
 						value={values.website}
@@ -148,6 +151,7 @@ const NewCharity = () => {
 					<input
 						type="text"
 						name="donationLinks"
+                        placeholder="Links..."
 						onChange={handleChange}
 						onBlur={handleBlur}
 						value={values.donationLinks}
@@ -157,6 +161,7 @@ const NewCharity = () => {
 					<input
 						type="text"
 						name="tags"
+                        placeholder="Tags..."
 						onChange={handleChange}
 						onBlur={handleBlur}
 						value={values.tags}

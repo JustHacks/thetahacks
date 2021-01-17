@@ -55,6 +55,7 @@ const SignupForm = () => {
 					onBlur={handleBlur}
 					value={values.displayName}
 					/>
+                        <br/>
 					{errors.displayName && touched.displayName && errors.displayName}
 					
 					<div className={styles.wrap}>
@@ -69,6 +70,7 @@ const SignupForm = () => {
 						value={values.email}
 						/>
 					</div>
+                        <br/>
 					{errors.email && touched.email && errors.email}
 
 					<div className={styles.wrap}>
@@ -83,7 +85,8 @@ const SignupForm = () => {
 						value={values.password}
 						/>
 					</div>
-					{errors.password && touched.password && errors.password}
+                        <br/>
+					{errors.password && touched.password && errors.password}<br/>
 					
 					<button className={`${styles.submitButton} ${buttonStyles.btn} ${buttonStyles.primaryBtn} `} type="submit" disabled={isSubmitting}> Submit </button>
 					<p className={styles.bottomText}>Have an account? <Link href="/login"><a>Login</a></Link></p>

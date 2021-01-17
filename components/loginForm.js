@@ -73,8 +73,8 @@ const LoginForm = () => {
 							value={values.password}
 							/>
 						</div>
-						{errors.password && touched.password && errors.password}
-						
+						{errors.password && touched.password && errors.password}<br/>
+
 						<button className={`${styles.submitButton} ${buttonStyles.btn} ${buttonStyles.primaryBtn}`} type="submit" disabled={isSubmitting}> Submit </button> <br />
 						
 						<p className={styles.bottomText}>
