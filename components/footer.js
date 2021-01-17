@@ -4,10 +4,13 @@ const Footer = () => {
 	return (
 		<div className="footer">
             <div className="socials">
+            <div className="icons">
             <h3>Follow us on</h3>
             <i className="fab fa-github"></i>
             <i className="fab fa-twitter"></i>
             <i className="fab fa-instagram"></i>
+            </div>
+            <div className="copyright">&#xA9; Pana 2021</div>
             </div>
             <div className="links">
             <ul><h3>Donate Via</h3>

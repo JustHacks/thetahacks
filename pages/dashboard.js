@@ -8,8 +8,10 @@ export default function HomePage() { // use arrow functions smh my head (shut) (
 
     const [charities, setCharities] = useState([]);
 
-    charitySearch({ name: '', tags: '' }).then(({ data }) => { // kinda makes me regret server side filtering
-        setCharities(data);
+    charitySearch({ name: '', tags: '' }).then((data) => { // kinda makes me regret server side filtering
+        if (data.ok) {
+            setCharities(data.data);
+        }
     });
 
     return (

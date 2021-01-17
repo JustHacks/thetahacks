@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Head from 'next/head';
 import { Formik } from "formik";
 import firebase from "firebase";
-//import '../styles/login.module.css';
+import "../styles/login.css";
 
 const LoginPage = () => {
     

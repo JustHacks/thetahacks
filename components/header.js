@@ -50,9 +50,8 @@ const Header = () => {
                             <div className="close">
                                 <i className="fas fa-times" onClick={() => setHamburger(false)}></i>
                             </div>
-                            <li>this is a</li>
-                            <li>hamburger</li>
-                            <li>menu</li>
+                            <li><Link href="/login"><a className="btn primary-btn">Create</a></Link></li>
+                            <li><Link href="/logout"><a className="btn secondary-btn">Logout</a></Link></li>
                         </ul>
                     </div>
                 </div>

@@ -82,6 +82,12 @@ const New = () => {
 				placeholder="Socials.."
 				title="Link your Websites Socials"
 				/>
+				<input
+				type="submit"
+				name="submit"
+				id="submit"
+				title="submit your charity"
+				/>
 			</form>
 		</div>
 	)

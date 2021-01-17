@@ -88,15 +88,9 @@ server.post('/api/charities/read', async (req, res) => {
 	const charity = await database.readCharity(name);
 
 	if (!charity) {
-		res.json({
-			ok: false,
-			reason: "Charity doesn't exist"
-		});
+		res.json({ ok: false, reason: "Charity doesn't exist" });
 	} else {
-		res.json({
-			ok: true,
-			charity: charity
-		});
+		res.json({ ok: true, charity: charity });
 	}
 });
 
@@ -105,10 +99,7 @@ server.post('/api/charities/search', async (req, res) => {
     console.log(name, tags);
 	const charities = await database.filterCharity(name, tags);
 
-	res.json({
-		ok: true,
-		data: charities
-	});
+	res.json({ ok: true, data: charities });
 });
 
 server.post('/api/charities/write', async (req, res) => {
@@ -121,7 +112,7 @@ server.post('/api/charities/write', async (req, res) => {
 		// charities/{name}/photo.{ext}
         const naive = photo.name.split(".")[1];
         const type = VALID_TYPES.includes(naive) ? naive : 'png'; // i updated this but we could change it back if you want
-		//const photoUrl = admin.storage().ref().child(`charities/${name}/photo.${type}`).put(photo.data /*or smth*/).getDownloadURL();
+		//const photoUrl = await (await admin.storage().bucket().child(`charities/${name}/photo.${type}`).put(photo.photo /*or smth*/)).getDownloadURL();
 		await database.writeCharity(new db.Charity(name, '', owner, desc, website, tags, links));
 	
 		res.json({ ok: true });
