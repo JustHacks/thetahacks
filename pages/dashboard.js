@@ -8,7 +8,7 @@ export default function HomePage() { // use arrow functions smh my head (shut) (
 
     const [charities, setCharities] = useState([]);
 
-    charitySearch('', '').then(data => { // kinda makes me regret server side filtering
+    charitySearch({ name: '', tags: '' }).then(({ data }) => { // kinda makes me regret server side filtering
         setCharities(data);
     });
 

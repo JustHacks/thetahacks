@@ -5,7 +5,8 @@ const LogoutPage = () => {
 	const [working, setWorking] = useState(true);
 
 	useEffect(async () => {
-		await firebase.auth().signOut();
+		if(firebase.auth().currentUser)
+			await firebase.auth().signOut();
 		setWorking(false);
 	}, []);
 

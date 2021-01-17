@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Formik } from "formik";
 import Link from 'next/link';
 import Head from 'next/head';
 import firebase from "firebase";
 
 const SignupPage = () => {
-    const user = firebase.auth().currentUser;
-    if (user) {
-        window.location = '/dashboard'; // is this the right way to do this?
-    }
+
+	useEffect(() => {
+		const user = firebase.auth().currentUser;
+		if (user) {
+			window.location = '/dashboard'; // is this the right way to do this?
+		}
+	}, []);
 
 	const onSubmit = async ({ email, displayName, password }, { setSubmitting }) => {
 		const user = await firebase.auth().createUserWithEmailAndPassword(email, password);

@@ -280,7 +280,6 @@ ul li{
 .nav > .hamburger {
     display: none;
 	transition: 2s;
-	height: 0px;
 }
 
 /* responsive */
@@ -373,4 +372,3 @@ ul li{
         margin-bottom: 5px;
     }
 }
-

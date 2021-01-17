@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from 'next/link';
 import Head from 'next/head';
 import { Formik } from "formik";
@@ -6,10 +6,13 @@ import firebase from "firebase";
 //import '../styles/login.module.css';
 
 const LoginPage = () => {
-    const user = firebase.auth().currentUser;
-    if (user) {
-        window.location = '/dashboard'; // is this the right way to do this?
-    }
+    
+	useEffect(() => {
+		const user = firebase.auth().currentUser;
+		if (user) {
+			window.location = '/dashboard'; // is this the right way to do this?
+		}
+	}, []);
 
 	const onSubmit = async ({ email, password }, { setSubmitting }) => {
 		await firebase.auth().signInWithEmailAndPassword(email, password);
@@ -46,31 +49,32 @@ const LoginPage = () => {
 				{({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
 					<div className="container">
 						<form onSubmit={handleSubmit}>
-						<div className="wrap">
-							<label htmlFor="email">Email:</label>
-							<input
-							type="email"
-							name="email"
-							id="email"
-							placeholder="Email.."
-							onChange={handleChange}
-							onBlur={handleBlur}
-							value={values.email}
-							/>
-						</div>
-						{errors.email && touched.email && errors.email}
-						<div className="wrap">
-							<label htmlFor="password">Password:</label>
-							<input
-							type="password"
-							name="password"
-							id="password"
-							placeholder="Password.."
-							onChange={handleChange}
-							onBlur={handleBlur}
-							value={values.password}
-							/>
-						</div>
+							<div className="wrap">
+								<label htmlFor="email">Email:</label>
+								<input
+								type="email"
+								name="email"
+								id="email"
+								placeholder="Email.."
+								onChange={handleChange}
+								onBlur={handleBlur}
+								value={values.email}
+								/>
+							</div>
+							{errors.email && touched.email && errors.email}
+							
+							<div className="wrap">
+								<label htmlFor="password">Password:</label>
+								<input
+								type="password"
+								name="password"
+								id="password"
+								placeholder="Password.."
+								onChange={handleChange}
+								onBlur={handleBlur}
+								value={values.password}
+								/>
+							</div>
 							{errors.password && touched.password && errors.password}
 					
 							<button type="submit" disabled={isSubmitting}> Submit 	</button>

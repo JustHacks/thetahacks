@@ -1,8 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from 'next/link';
+import firebase from "firebase";
 
 const Header = () => {
     const [hamburger, setHamburger] = useState(false);
+	const [isLoggedIn, setLoggedIn] = useState(false);
+
+	useEffect(() => {
+		const user = firebase.auth().currentUser;
+		
+		if(user){
+			setLoggedIn(true);
+		}
+	}, []);
 
 	return (
 		<div className="header">
@@ -13,13 +23,26 @@ const Header = () => {
                     <div className="search-bar">
                         <input type="text" placeholder="Search.."/><i className="fas fa-search"></i>
                     </div>
-                    <Link href="login">
-                        <a className="btn primary-btn" >Login</a>
-                    </Link>
-                    <Link href="/new/charity">
-                        <a className="btn secondary-btn" >Create</a>
-                    </Link>
-                    
+					{
+						isLoggedIn ?
+						<>
+							<Link href="/login">
+								<a className="btn primary-btn" >Login</a>
+							</Link>
+							<Link href="/signup">
+								<a className="btn secondary-btn" >Sign up</a>
+							</Link>
+						</> :
+						<>
+							<Link href="/new/charity">
+								<a className="btn primary-btn" >Create</a>
+							</Link>
+							<Link href="/logout">
+								<a className="btn secondary-btn" >Logout</a>
+							</Link>
+						</>
+					}
+
 					<div className={`hamburger ${hamburger ? 'hamburger-active' : ''}`}>
                         <i className="fas fa-bars" onClick={() => setHamburger(true)}></i>
                         

@@ -102,6 +102,7 @@ server.post('/api/charities/read', async (req, res) => {
 
 server.post('/api/charities/search', async (req, res) => {
 	const { name, tags } = req.body;
+    console.log(name, tags);
 	const charities = await database.filterCharity(name, tags);
 
 	res.json({

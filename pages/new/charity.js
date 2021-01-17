@@ -4,17 +4,27 @@ import firebase from "firebase";
 import { charityWrite } from "../../lib/api";
 
 const NewCharity = () => {
-	const user = firebase.auth().currentUser;
-    if (!user) {
-        window.location = '/login'; // is this the right way to do this?
-    }
+    const [loaded, setLoaded] = useState(true);
+
+    
+	useEffect(() => {
+		firebase.auth().onAuthStateChanged(() => {
+			if (!firebase.auth().currentUser) {
+				window.location = '/login';
+			}
+		});
+	}, []);
+
 	const onSubmit = async ({ donationLinks, description, website, name, tags, photo }, { setSubmitting }) => {
-    	const user = firebase.auth().currentUser;if (!user) {
+    	const user = firebase.auth().currentUser;
+		
+		if (!user) {
             window.location = '/login'; // isthis the right way to do this?
         }
         const reader = new FileReader();
-        reader.addEventListener('load', async () => {
-            charityWrite({ 
+        
+		reader.addEventListener('load', async () => {
+            await charityWrite({ 
                 name, 
                 photo: {
                     name: photo.name,
@@ -27,9 +37,9 @@ const NewCharity = () => {
                 owner: user.name, 
                 token: await user.getIdToken()
             });
+            window.location = '/dashboard';
         });
         reader.readAsBinaryString(photo);
-
 		setSubmitting(false);
 	};
 
@@ -81,7 +91,7 @@ const NewCharity = () => {
 
 	return (
 		<Formik
-			initialValues={{ name: '', description: '', donationLinks: '', website: '' }}
+			initialValues={{ name: '', description: '', donationLinks: '', website: '', tags: '' }}
 			validate={validate}
 			onSubmit={onSubmit}
 		>
@@ -131,7 +141,7 @@ const NewCharity = () => {
 					/>
 					{errors.donationLinks && touched.donationLinks && errors.donationLinks}
 
-					<button type="submit" disabled={isSubmitting}> Submit </button>
+					<button type="submit" disabled={loaded && isSubmitting}> Submit </button>
 				</form>
 			)}
 		</Formik>
