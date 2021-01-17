@@ -3,29 +3,36 @@ import { Formik } from "formik";
 import { charitySearch } from "../lib/api";
 
 const SearchBar = ({ onSearch }) => {
-	const onSubmit = async ({ text }, { setSubmitting }) => {
+
+	const onSubmit = ({ text }, { setSubmitting }) => {
 		let name = "";
-		let tags = [""];
+		let tags = [];
 		let state = 0;
 
 		for(let char of text){
 			switch(state){
 			case 0:
 				if(char == '['){
-					state++;
+					state = 1;
+					tags.push("");
 				} else {
 					name += char;
 				}
 			case 1:
 				if(char == ']'){
-					tags.push("");
-				} else{
+					state = 2;
+				} else {
 					tags[tags.length-1] += char;
+				}
+			case 2:
+				if(char == '['){
+					state = 1;
+					tags.push("");
 				}
 			}
 		}
-
-		charitySearch({ name, tags: tags.slice(0, tags.length-1) }).then(onSearch);
+        console.log('aaaah');
+		charitySearch({ name, tags }).then(onSearch);
     };
 	
 	return (
@@ -43,7 +50,7 @@ const SearchBar = ({ onSearch }) => {
 						value={values.text}
 						onChange={handleSubmit}
 					/>
-					<i className="fas fa-search"></i>
+					<i className="fas fa-search" onClick={handleSubmit}></i>
 				</div>
 			)}
 		</Formik>

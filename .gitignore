@@ -1,4 +1,4 @@
-/app.db
-/.next/
-/.next/*
+app.db
+.next/
+.next/*
 *.md

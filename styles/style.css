@@ -17,6 +17,7 @@
     padding: 0;
     color: var(--text);
 }
+
 h1, h2, h3, h4, h5, h6{
     font-weight: normal;
 }
@@ -254,6 +255,7 @@ ul {
 
 ul li{
     font-size: 16px;
+    cursor: pointer;
 }
 
 .socials{
@@ -267,6 +269,7 @@ ul li{
 .socials i::before{
     color: var(--white);
     margin: 5px;
+    cursor: pointer;
 }
 
 .copyright{

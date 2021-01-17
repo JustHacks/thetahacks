@@ -4,6 +4,7 @@ import { charityRead, charityWrite, charitySearch } from '../lib/api.js';
 import { useState, useEffect } from 'react';
 import Footer from '../components/footer';
 import firebase from "firebase";
+import SearchBar from "../components/searchBar";
 
 export default function HomePage() { // use arrow functions smh my head (shut) (you shut) (yo momma shut) (not you smh idot) (unless you wrote 'shut') (perhaps I did)
     const [charities, setCharities] = useState([]);
@@ -39,6 +40,10 @@ export default function HomePage() { // use arrow functions smh my head (shut) (
                 </Link>
             </nav>
             <article>
+                <SearchBar onSearch={(res) => {
+                    console.log(res);
+                    setCharities(res);
+                 }} />
                 <ul>
                 {
                     charities.size == 0 ? 'Loading...' : charities.map(item => 

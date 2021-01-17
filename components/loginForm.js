@@ -57,7 +57,6 @@ const LoginForm = () => {
 							onChange={handleChange}
 							onBlur={handleBlur}
 							value={values.email}
-							required
 							/>
 						</div>
 						{errors.email && touched.email && errors.email}
@@ -72,7 +71,6 @@ const LoginForm = () => {
 							onChange={handleChange}
 							onBlur={handleBlur}
 							value={values.password}
-							required
 							/>
 						</div>
 						{errors.password && touched.password && errors.password}

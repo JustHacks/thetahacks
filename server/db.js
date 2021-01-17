@@ -87,7 +87,7 @@ class Database {
     async filterCharity(name, tags) {
         name = name.replace(/[^a-zA-Z0-9- ]/g, ''); // aha best validation
         tags = tags.replace(/[^a-zA-Z0-9- ]/g, ''); // still feels like quite vulnerable code :thonk:
-        return await this.db.all("SELECT * FROM charities WHERE name LIKE ? OR tags LIKE ?", `%${name}%`, `%${tags}%`); // major cve vibes here
+        return await this.db.all("SELECT * FROM charities WHERE name LIKE ? AND tags LIKE ?", `%${name}%`, `%${tags}%`); // major cve vibes here
     }
 
     close() {

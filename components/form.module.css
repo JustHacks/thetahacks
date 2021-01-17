@@ -59,10 +59,6 @@
 	border-radius: 3px;
 }
 
-.container input:required:focus {
-	border: 3px solid rgb(240, 81, 81);
-}
-
 .container input::placeholder {
 	color: #fff;
 	text-align: left !important;
