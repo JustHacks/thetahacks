@@ -356,6 +356,9 @@ ul li{
     list-style-type: none;
 }
 
+.nav > input:focus {
+	outline: none !important;
+}
 /* responsive */
 
 @media (max-width: 600px) {
