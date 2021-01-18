@@ -37,7 +37,7 @@ export default function HomePage() { // use arrow functions smh my head (shut) (
                     setCharities(res.data);
                 }}/>
                 <Link href="/charity/new">
-                    <a className="btn-secondary btn">Create Fund</a>
+                    <a className={styles.btn}>Create Fund</a>
                 </Link>
             </nav>
             <article>

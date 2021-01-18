@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import Head from 'next/head'
 import { charityRead } from "../../../lib/api.js";
 
 const ViewCharityPage = () => {
@@ -23,6 +24,9 @@ const ViewCharityPage = () => {
 	return (
 		charity ?
 		<main>
+			<Head>
+				<title>Panda | {charity.name}</title>
+			</Head>
 			<h1>{charity.name}</h1>
 			<img src={charity.photo} />
             <a href={charity.website}>Website</a>

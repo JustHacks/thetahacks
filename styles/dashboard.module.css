@@ -48,3 +48,20 @@
     position: relative;
     bottom: 0;
 }
+
+/*btn*/
+
+.btn {
+	color: var(--white);
+  background: var(--main);
+  border: 2px solid var(--main);
+	padding: 3px 15px;
+	transition: 200ms;
+	border-radius: 2px;
+	cursor: pointer;
+}
+
+.btn:hover {
+	background: var(--maindark);
+	transition: 200ms;
+}
