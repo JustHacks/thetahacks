@@ -1,5 +1,4 @@
 .modal {
-	background-color: rgb(238, 238, 238);
   background-color: rgba(0,0,0,0.4);
   display: block; 
   position: fixed; 
@@ -18,7 +17,7 @@
   margin: auto;
   padding: 20px;
   width: 80%;
-	border-radius: 3px;
+	border-radius: 4px;
 }
 
 .close {
@@ -26,14 +25,26 @@
   float: right;
   font-size: 28px;
   font-weight: bold;
+	transition: 100ms;
 }
 
 .close:hover, .close:focus {
   color: rgb(51, 50, 50);
   text-decoration: none;
+	transform: scale(1.06);
   cursor: pointer;
+	transition: 100ms;
+	text-shadow: .3px .8px .4px #444;
 }
 
 .hidden {
     display: none;
+}
+
+.headerTwo {
+	text-align: center;
+}
+ 
+.modal > .modalContent::-webkit-scrollbar {
+	width: 6.9;
 }

@@ -316,7 +316,7 @@ ul li{
 }
 
 ::selection {
-	background: var(--white);
+	background: var(--maindark);
 }
 
 /* hamburger */
@@ -325,6 +325,7 @@ ul li{
     display: none;
 	transition: 2s;
 }
+
 
 
 .logo {
@@ -435,3 +436,4 @@ ul li{
         margin-bottom: 5px;
     }
 }
+

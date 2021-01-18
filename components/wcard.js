@@ -5,6 +5,7 @@ import Head from 'next/head';
 
 const wCard = () => {
     const [modal, setModal] = useState(false);
+
 	return (
 		<>
 			<Head>
@@ -35,9 +36,7 @@ const wCard = () => {
                         <Link href="/charity/view/st--jude-children-s-hospital">
 						    <a className="btn primary-btn" >Donate Now</a>
                         </Link>
-                        <Link href="/charity/view/st--jude-children-s-hospital">
 						    <a onClick={() => setModal(true)} className="btn secondary-btn" >Read More</a>
-                        </Link>
 					</div>
 				</div>
             </div>
@@ -52,16 +51,15 @@ const wCard = () => {
                         <Link href="/charity/view/save-the-children">
 						    <a className="btn primary-btn" >Donate Now</a>
                         </Link>
-                        <Link href="/charity/view/save-the-children">
 						    <a onClick={() => setModal(true)} className="btn secondary-btn" >Read More</a>
-                        </Link>
 					</div>
 				</div>
       </div>
 			<div id="modal" className={modalStyles.modal + ' ' +(modal ? '' : modalStyles.hidden)}>
   			<div className={modalStyles.modalContent}>
     	<span className={modalStyles.close} onClick={() => setModal(false)}>&times;</span>
-    	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel vestibulum neque. Integer elementum molestie tristique. Nunc euismod, felis eu facilisis iaculis, odio nibh ornare mi, dapibus sagittis sem mi et nulla. Aenean posuere rhoncus ipsum, in fermentum metus. Nam blandit urna vel sem pharetra, a condimentum mauris hendrerit.</p>
+			<h2 className={modalStyles.headerTwo}>Lorem ipsum dolor</h2>
+    	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut massa mi, finibus ut elit sed, pellentesque eleifend mauris. Donec accumsan eros ligula, a convallis risus feugiat ut. Mauris eget ex id lorem consectetur commodo. Mauris et vulputate magna. In lectus nibh, faucibus nec venenatis ac, egestas ac nisl. Praesent lacinia convallis egestas. Praesent egestas ullamcorper iaculis. Aenean massa quam, ultrices ut eros et, luctus porttitor nisl. Cras tempor vehicula porta. Sed ornare elit ac turpis auctor ornare. Suspendisse blandit quis elit nec dignissim.</p>
   		</div>
 
     </div>

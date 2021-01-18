@@ -1,4 +1,4 @@
-var modal = document.getElementById("modal");
+/*var modal = document.getElementById("modal");
 
 var btn = document.getElementById("btn");
 
@@ -16,4 +16,4 @@ window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
-}
+}*/
