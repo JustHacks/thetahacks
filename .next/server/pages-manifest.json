@@ -1,12 +1,13 @@
 {
   "/_app": "pages/_app.js",
-  "/charity/new": "pages/charity/new.js",
-  "/charity/view/[id]": "pages/charity/view/[id].js",
-  "/dashboard": "pages/dashboard.js",
-  "/": "pages/index.js",
-  "/login": "pages/login.js",
-  "/logout": "pages/logout.js",
-  "/signup": "pages/signup.js",
+  "/charity/new": "pages/charity/new.html",
+  "/charity/view/[id]": "pages/charity/view/[id].html",
+  "/dashboard": "pages/dashboard.html",
+  "/": "pages/index.html",
+  "/login": "pages/login.html",
+  "/logout": "pages/logout.html",
+  "/signup": "pages/signup.html",
   "/_error": "pages/_error.js",
-  "/_document": "pages/_document.js"
+  "/_document": "pages/_document.js",
+  "/404": "pages/404.html"
 }

@@ -361,6 +361,10 @@ ul li{
 }
 /* responsive */
 
+nav {
+	z-index: 0;
+}
+
 @media (max-width: 600px) {
     .logo > img {
         max-height: 30px;
