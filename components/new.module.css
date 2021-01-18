@@ -18,11 +18,11 @@
 	text-align: center;
 }
 
-.label {
+/*.label {
 	text-align: left;
-	/*border: 2px solid #000;*/
+	/*border: 2px solid #000;
 	width: 57%;
-}
+}*/
 
 .newContainer input:not(:first-child), .newContainer textarea {
 	margin-top: 5px;

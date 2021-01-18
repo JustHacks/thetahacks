@@ -76,7 +76,7 @@ body, html  {
 	cursor: pointer;
 }
 
-.search-bar input:focus{
+.search-bar  input:focus{
     outline: transparent;
 }
 
