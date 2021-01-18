@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Formik } from "formik";
 import firebase from "firebase";
+import Head from 'next/head';
 import { charityWrite } from "../../lib/api";
 
 const NewCharity = () => {
@@ -57,10 +58,10 @@ const NewCharity = () => {
 			return;
 		}
 
-		if(name.length < 8){
-			errors.name = "Charity name too short."
+		if(name.length < 2){
+			errors.name = "Charity name too short. Should have a minimun of at least 2 chars."
 		} else if(name.length > 64){
-			errors.name = "Charity name too long.";
+			errors.name = "Charity name too long. Name must be shorter than 64.";
 		} else if(description.length < 32){
 			errors.description = "Description too short.";
 		} else if(description.length > 512){
@@ -103,6 +104,10 @@ const NewCharity = () => {
 	};
 
 	return (
+		<>
+		<Head>
+			<title>Pana | New</title>
+		</Head>
 		<Formik
 			initialValues={{ name: '', description: '', donationLinks: '', website: '', tags: '' }}
 			validate={validate}
@@ -113,6 +118,8 @@ const NewCharity = () => {
 					<input
 						type="file"
 						name="photo"
+						accept="image/*"
+						title="Upload Image for your charity"
 						onChange={e => setFieldValue("photo", e.target.files[0])}
 						onBlur={handleBlur}
 					/>
@@ -172,6 +179,7 @@ const NewCharity = () => {
 				</form>
 			)}
 		</Formik>
+		</>
 	);
 };
 

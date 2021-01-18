@@ -1,6 +1,6 @@
 .modal {
   background-color: rgba(0,0,0,0.4);
-  display: block; 
+  display: block;
   position: fixed; 
   padding-top: 10%;
   left: 0;
@@ -43,8 +43,4 @@
 
 .headerTwo {
 	text-align: center;
-}
- 
-.modal > .modalContent::-webkit-scrollbar {
-	width: 6.9;
 }
