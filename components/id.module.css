@@ -17,11 +17,11 @@
 }
 
 .tags li{
-    font-size: .8em;
-    margin: 2px;
-    padding: 2px 5px;
-    color: var(--white);
-    background: var(--main);
+  font-size: .8em;
+  margin: 2px;
+  padding: 2px 5px;
+  color: var(--white);
+  background: var(--main);
 	width: fit-content;
 	display: inline-block;
 }
