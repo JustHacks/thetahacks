@@ -24,7 +24,7 @@ const SignupForm = () => {
 		const errors = {};
 
 		if (!email) {
-			errors.email = "Required";
+			errors.email = "*Required";
 		} else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)) {
 			errors.email = "Invalid email address";
 		} else if (password.length < 6){
@@ -54,6 +54,7 @@ const SignupForm = () => {
 					onChange={handleChange}
 					onBlur={handleBlur}
 					value={values.displayName}
+					required
 					/>
                     
 					<div className={styles.formError}>{errors.displayName && touched.displayName && errors.displayName}</div>
@@ -83,13 +84,14 @@ const SignupForm = () => {
 						onChange={handleChange}
 						onBlur={handleBlur}
 						value={values.password}
+						required
 						/>
 					</div>
                 
 					<div className={styles.formError}>{errors.password && touched.password && errors.password}</div><br/>
 					
 					<button className={`${styles.submitButton} ${buttonStyles.btn} ${buttonStyles.primaryBtn} `} type="submit" disabled={isSubmitting}> Submit </button>
-					<p className={styles.bottomText}>Have an account? <Link href="/login"><a>Login</a></Link></p>
+					<p className={styles.bottomText}>Have an account? <Link href="/login"><a className={styles.link}>Login</a></Link></p>
 				</form>
 				</div>
 			)}

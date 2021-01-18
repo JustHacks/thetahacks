@@ -6,6 +6,7 @@ import Footer from '../components/footer';
 import firebase from "firebase";
 import SearchBar from "../components/searchBar";
 import styles from "../styles/dashboard.module.css";
+import Header from "../components/header";
 
 export default function HomePage() { // use arrow functions smh my head (shut) (you shut) (yo momma shut) (not you smh idot) (unless you wrote 'shut') (perhaps I did)
     const [charities, setCharities] = useState([]);
@@ -32,9 +33,9 @@ export default function HomePage() { // use arrow functions smh my head (shut) (
                 <title>Pana | Dashboard</title>
             </Head>	
             <nav>
-                <SearchBar onSearch={(res) => {
+            <Header doStuff={(res) => {
                     setCharities(res.data);
-                }} />
+                }}/>
                 <Link href="/charity/new">
                     <a className="btn-secondary btn">Create Fund</a>
                 </Link>

@@ -57,14 +57,16 @@ body, html  {
     border-radius: 20px;
 }
 
+/* search-bar */
+
 .search-bar{
     border-radius: 20px;
-    padding: 3px 10px;   
+    padding: 5px 10px;   
     box-shadow: var(--shadow);
     margin: 0 10px;
 }
 
-input{
+.search-bar input{
     border: none;
 }
 
@@ -210,7 +212,9 @@ hr{
 	bottom: 15px;
     padding-left: 5px;
 }
+
 /* About */
+
 .about{
     max-width: 800px;
     margin: 0 auto;
@@ -221,6 +225,7 @@ hr{
 .about h3{
     color: var(--main);
 }
+
 /* footer */
 
 .footer{
@@ -339,6 +344,10 @@ ul li{
         max-height: 30px;
     }
     
+    #title{
+        font-size: 1em;
+    }
+    
     .nav > .btn {
         display: none;
     }
@@ -359,12 +368,13 @@ ul li{
 
     .nav > .hamburger.hamburger-active > .contents {
         display: flex;
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 0;
         width: 100vw;
         height: 100vh;
-        background-color: var(--white);
+        /*background-color: var(--white);*/
+				background-color: rgba(255, 255, 255, 0.9);
         color: black;
         justify-content: center;
         align-items: center;
@@ -380,6 +390,7 @@ ul li{
 }
 
 /* responsive cards */
+
 @media (max-width: 700px){
     .card-area,
     .w-card{

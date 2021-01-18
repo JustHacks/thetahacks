@@ -3,7 +3,7 @@ import Link from 'next/link';
 import firebase from "firebase";
 import SearchBar from "./searchBar";
 
-const Header = () => {
+const Header = ({ doStuff }) => {
     const [hamburger, setHamburger] = useState(false);
 	const [isLoggedIn, setLoggedIn] = useState(false);
 
@@ -19,9 +19,11 @@ const Header = () => {
 		<div className="header">
             <div className="logo">
                 <img src="/images/logo.png" alt="logo"/>
+                            <h2 id="title">Pana</h2>
             </div>
-            <h2 id="title">Pana</h2>
                 <div className="nav">
+                            <SearchBar onSearch={doStuff}/>
+
 				  	{
 						!isLoggedIn ?
 						<>
@@ -33,11 +35,11 @@ const Header = () => {
 							</Link>
 						</> :
 						<>
-							<Link href="/charity/new">
-								<a className="btn primary-btn" >Create</a>
+							<Link href="/login">
+								<a className="btn primary-btn" >Login</a>
 							</Link>
-							<Link href="/logout">
-								<a className="btn secondary-btn" >Logout</a>
+							<Link href="/signup">
+								<a className="btn secondary-btn" >Sign Up</a>
 							</Link>
 						</>
 					}
@@ -49,8 +51,8 @@ const Header = () => {
                             <div className="close">
                                 <i className="fas fa-times" onClick={() => setHamburger(false)}></i>
                             </div>
-                            <li><Link href="/login"><a className="btn primary-btn">Create</a></Link></li>
-                            <li><Link href="/logout"><a className="btn secondary-btn">Logout</a></Link></li>
+                            <li><Link href="/login"><a className="btn primary-btn">Login</a></Link></li>
+                            <li><Link href="/signup"><a className="btn secondary-btn">Sign Up</a></Link></li>
                         </ul>
                     </div>
                 </div>

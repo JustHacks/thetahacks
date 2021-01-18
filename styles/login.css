@@ -36,6 +36,8 @@ a:hover {
 	transition: 500ms;
 }
 
+/* btns */
+
 button {
 	padding: 6px 7px;
 	border: none;
@@ -58,6 +60,8 @@ button:hover {
 button:active {
 	background: rgb(36, 49, 66);
 }
+
+/* container */
 
 .container {
 	width: 50%;
@@ -104,6 +108,8 @@ button:active {
 	color: var(--mainText);
 	display: inline-block;
 }
+
+/* text */
 
 h1 {
 	text-align: center;
