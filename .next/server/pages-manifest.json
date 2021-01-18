@@ -1,5 +1,13 @@
 {
   "/_app": "pages/_app.js",
+  "/charity/new": "pages/charity/new.js",
+  "/charity/view/[id]": "pages/charity/view/[id].js",
+  "/dashboard": "pages/dashboard.js",
+  "/": "pages/index.js",
+  "/login": "pages/login.js",
+  "/logout": "pages/logout.js",
+  "/profile": "pages/profile.js",
+  "/signup": "pages/signup.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js"
 }
