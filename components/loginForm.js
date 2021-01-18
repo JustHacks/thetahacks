@@ -18,9 +18,18 @@ const LoginForm = () => {
 		});
 	}, []);
 
+	const [submitError, setSubmitError] = useState("");
+
 	const onSubmit = async ({ email, password }, { setSubmitting }) => {
-		await firebase.auth().signInWithEmailAndPassword(email, password);
-		router.push("/dashboard");
+		if(submitError){
+			setSubmitError("");
+		}
+		try {
+			await firebase.auth().signInWithEmailAndPassword(email, password);
+			router.push("/dashboard");
+		} catch(e){
+			setSubmitError(e.message);
+		}
     };
 
 	const validate = ({ email, password }) => {
@@ -48,48 +57,56 @@ const LoginForm = () => {
 		>
 			{({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
 				<div className={styles.bodyWrap}>
-				<div className={styles.container}>
-				<h1 className={styles.headerOne}>Login</h1>
-					<form onSubmit={handleSubmit}>
-						<div className={styles.wrap}>
-							<label htmlFor="email">Email:</label>
-							<input
-							type="email"
-							name="email"
-							id="email"
-							placeholder="Email.."
-							onChange={handleChange}
-							onBlur={handleBlur}
-							value={values.email}
-							/>
-						</div>
-						<div className={styles.formError}>{errors.email && touched.email && errors.email}</div>
-						
-						<div className={styles.wrap}>
-							<label htmlFor="password">Password:</label>
-							<input
-							type="password"
-							name="password"
-							id="password"
-							placeholder="Password.."
-							onChange={handleChange}
-							onBlur={handleBlur}
-							value={values.password}
-							/>
-						</div>
-                        
-						<div className={styles.formError}>
-                        {errors.password && touched.password && errors.password}
-                        </div>
-
-						<button className={`${styles.submitButton} ${buttonStyles.btn} ${buttonStyles.primaryBtn}`} type="submit" disabled={isSubmitting}> Submit </button> <br />
-						
-						<p className={styles.bottomText}>
-							Don't have an account?  
-							<Link href="/signup"><a className={styles.link}> Sign Up</a></Link>
-						</p>
-					</form>
-				</div>
+					<div className={styles.container}>
+					<h1 className={styles.headerOne}>Login</h1>
+						<form onSubmit={handleSubmit}>
+							<div className={styles.wrap}>
+								<label htmlFor="email">Email:</label>
+								<input
+								type="email"
+								name="email"
+								id="email"
+								placeholder="Email.."
+								onChange={handleChange}
+								onBlur={handleBlur}
+								value={values.email}
+								/>
+							</div>
+							<div className={styles.formError}>
+								{errors.email && touched.email && errors.email}
+							</div>
+							
+							<div className={styles.wrap}>
+								<label htmlFor="password">Password:</label>
+								<input
+								type="password"
+								name="password"
+								id="password"
+								placeholder="Password.."
+								onChange={handleChange}
+								onBlur={handleBlur}
+								value={values.password}
+								/>
+							</div>
+							
+							<div className={styles.formError}>
+								{errors.password && touched.password && errors.password}
+							</div>
+							{
+								submitError &&
+								<div className={styles.formError}>
+									{submitError}
+								</div>
+							}
+							<button className={`${styles.submitButton} ${buttonStyles.btn} ${buttonStyles.primaryBtn}`} type="submit" disabled={isSubmitting}> Login </button>
+							
+							<br />
+							<p className={styles.bottomText}>
+								Don't have an account?  
+								<Link href="/signup"><a className={styles.link}> Sign Up</a></Link>
+							</p>
+						</form>
+					</div>
 				</div>
 			)}
 		</Formik>

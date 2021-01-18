@@ -16,10 +16,19 @@ const SignupForm = () => {
 			}
 		});
 	}, []);
+	
+	const [submitError, setSubmitError] = useState("");
 
 	const onSubmit = async ({ email, displayName, password }, { setSubmitting }) => {
-		await firebase.auth().createUserWithEmailAndPassword(email, password);
-        router.push("/dashboard");
+		if(submitError){
+			setSubmitError("");
+		}
+		try {
+    		await firebase.auth().createUserWithEmailAndPassword(email, password);
+			router.push("/dashboard");
+		} catch(e){
+			setSubmitError(e.message);
+		}
 	};
 
 	const validate = ({ email, password,displayName }) => {
@@ -52,14 +61,14 @@ const SignupForm = () => {
 					<form onSubmit={handleSubmit}>
 						<label htmlFor="displayName">Display Name</label>
 						<input
-						type="text"
-						name="displayName"
-						placeholder="Display.."
-						id="displayName"
-						onChange={handleChange}
-						onBlur={handleBlur}
-						value={values.displayName}
-						required
+							type="text"
+							name="displayName"
+							placeholder="Display.."
+							id="displayName"
+							onChange={handleChange}
+							onBlur={handleBlur}
+							value={values.displayName}
+							required
 						/>
 						
 						<div className={styles.formError}>{errors.displayName && touched.displayName && errors.displayName}</div>
@@ -67,13 +76,13 @@ const SignupForm = () => {
 						<div className={styles.wrap}>
 							<label htmlFor="email">Email:</label>
 							<input
-							type="email"
-							name="email"
-							id="email"
-							placeholder="Email.."
-							onChange={handleChange}
-							onBlur={handleBlur}
-							value={values.email}
+								type="email"
+								name="email"
+								id="email"
+								placeholder="Email.."
+								onChange={handleChange}
+								onBlur={handleBlur}
+								value={values.email}
 							/>
 						</div>
 						
@@ -82,19 +91,26 @@ const SignupForm = () => {
 						<div className={styles.wrap}>
 							<label htmlFor="password">Password:</label>
 							<input
-							type="password"
-							name="password"
-							placeholder="Password.."
-							id="password"
-							onChange={handleChange}
-							onBlur={handleBlur}
-							value={values.password}
-							required
+								type="password"
+								name="password"
+								placeholder="Password.."
+								id="password"
+								onChange={handleChange}
+								onBlur={handleBlur}
+								value={values.password}
+								required
 							/>
 						</div>
 					
-						<div className={styles.formError}>{errors.password && touched.password && errors.password}</div><br/>
-						
+						<div className={styles.formError}>
+							{errors.password && touched.password && errors.password}
+						</div><br/>
+						{
+							submitError &&
+							<div className={styles.formError}>
+								{submitError}
+							</div>
+						}
 						<button className={`${styles.submitButton} ${buttonStyles.btn} ${buttonStyles.primaryBtn} `} type="submit" disabled={isSubmitting}> Submit </button>
 						<p className={styles.bottomText}>Have an account? <Link href="/login"><a className={styles.link}>Login</a></Link></p>
 					</form>

@@ -19,6 +19,7 @@
     background: var(--white);
     box-shadow: var(--shadow);  
     position: relative; 
+    cursor: context-menu;
 }
 
 .charities a{

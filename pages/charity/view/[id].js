@@ -10,7 +10,7 @@ const CharityViewPage = () => {
 	return (
 		<>
 			<Head>
-				<title>Pana | {charity.name}</title>
+				<title>Pana | { id }</title>
 			</Head>
 			<Header />
 			<CharityView id={id}/>

@@ -9,10 +9,9 @@ import About from "../components/about";
 import Hero from "../components/hero";
 import WCard from "../components/wcard";
 
-export default function HomePage() { // use arrow functions smh my head (shut) (you shut) (yo momma shut) (not you smh idot) (unless you wrote "shut") (perhaps I did)
+const HomePage = () => { // use arrow functions smh my head (shut) (you shut) (yo momma shut) (not you smh idot) (unless you wrote "shut") (perhaps I did)
 	
 // show how u make it :think-pika:
-
 	return (
 		<main>
             <Head>
@@ -29,4 +28,4 @@ export default function HomePage() { // use arrow functions smh my head (shut) (
 	);
 };
 
-//export default HomePage;
+export default HomePage;

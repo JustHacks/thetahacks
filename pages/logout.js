@@ -1,18 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import firebase from "firebase";
 import { useRouter } from "next/router";
 
 const LogoutPage = () => {
-	useEffect(async () => {
+	const router = useRouter();
+
+	useEffect(() => {
 		if(firebase.auth().currentUser){
-			await firebase.auth().signOut();
+			firebase.auth().signOut().then(() => {
+				router.push("/");
+			});
+		} else {
+			router.push("/");
 		}
-		location = "/";
 	}, []);
 
-	return (
-		<div>"Logging out..."</div>
-	);
+	return <div></div>;
 };
 
 export default LogoutPage;

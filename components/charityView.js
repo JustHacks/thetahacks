@@ -22,22 +22,24 @@ const CharityView = ({ id }) => {
 	return (
 		charity ?
 		<main>
-			<div className="container">
+			<div className={styles.container}>
 				<h1>{charity.name}</h1>
 				<img src={charity.photo} />
 				
 				<Link href={charity.website}>
-					<a>Website</a>
+					<a>Website:</a>
 				</Link>
 
 				<br/><br/>
+				<h4>About:</h4>
 				<p>{charity.desc}</p>
 				
 				<h2>Donation links</h2>
 				<ul>
 					{charity.links.split(',').map(item => <li><a className={styles.link} href={item}>{item}</a></li>)}
 				</ul>
-				<ul class="tags">
+				<h5>Tags: </h5>
+				<ul className={styles.tags}>
 					{charity.tags.split(' ').map(item => <li>{item}</li>)}
 				</ul>
 			</div>

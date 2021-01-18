@@ -71,8 +71,6 @@ const NewCharity = () => {
 			errors.description = "Description too short.";
 		} else if(description.length > 512){
 			errors.description = "Description too long.";
-		} else if(photo.size > 1024*1024*5){
-			errors.photo = "File too large.";
 		} else {
 			const dLinks = donationLinks.split(",").map(link =>  link.trim()).filter(link => link);
 
@@ -123,6 +121,7 @@ const NewCharity = () => {
 				<div className={newStyles.newContainer}>
 					<form onSubmit={handleSubmit}>
 						<div className={newStyles.wrap}>
+						{/*
 							<input
 								type="file"
 								name="photo"
@@ -133,6 +132,7 @@ const NewCharity = () => {
 								onBlur={handleBlur}
 							/>
 							{errors.photo && touched.photo && errors.photo}
+						*/}
 						</div>
 						<div className={newStyles.wrap}>
 							<label htmlFor="name">Charity Name:</label><br></br>

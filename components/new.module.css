@@ -15,12 +15,13 @@
 	box-shadow: 0px 17px 25px 0px var(--shadow-color);
 	z-index: 6 !important;
     max-width: 400px;
-		text-align: center;
+	text-align: center;
 }
 
 .label {
 	text-align: left;
-	border: 2px solid #000;
+	/*border: 2px solid #000;*/
+	width: 57%;
 }
 
 .newContainer input:not(:first-child), .newContainer textarea {
@@ -67,8 +68,8 @@
 
 .btn {
 	color: var(--white);
-  background: var(--main);
-  border: 2px solid var(--main);
+    background: var(--main);
+    border: 2px solid var(--main);
 	padding: 3px 15px;
 	transition: 200ms;
 	border-radius: 2px;

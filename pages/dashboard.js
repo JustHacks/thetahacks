@@ -58,7 +58,7 @@ export default function HomePage() { // use arrow functions smh my head (shut) (
 								<ul className={styles.tags}>
 									{item.tags.split(' ').map(tag => <li>{tag}</li>)}
 								</ul>
-                				<a className="btn secondary-btn" >Read More</a>
+                				<Link href={`/charity/view/${item.id}`}><a className="btn secondary-btn">Read More</a></Link>
 							</li>
 						))
 						// Improve this later obviously

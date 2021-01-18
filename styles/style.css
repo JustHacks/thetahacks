@@ -132,7 +132,7 @@ body, html  {
     color: var(--main);
     background: var(--white);
     border: 2px solid var(--main);
-		padding: 6px 15px;
+	padding: 6px 15px;
 }
 
 .secondary-btn:hover{
@@ -146,10 +146,11 @@ body, html  {
 }
 
 .tertiary-btn:hover {
-	background: var(--shadow-color)
+	background: var(--shadow-color);
 }
 
 .btn:focus {
+    box-shadow: 0px 0px 4px var(--maindark);
     outline: transparent;
 }
 
