@@ -18,44 +18,56 @@ const Header = ({ doStuff }) => {
 	return (
 		<div className="header">
             <div className="logo">
-                 <img src="/images/logo.png" alt="logo"/>
-                            <h2 id="title">Pana</h2>
+				<Link href="/">
+					<a className="logoLink">
+						<img src="/images/logo.png" alt="logo"/>
+						<h2 id="title">Pana</h2>
+					</a>
+				</Link>
             </div>
-                <div className="nav">
-                            <SearchBar onSearch={doStuff}/>
+			<div className="nav">
+				<SearchBar onSearch={doStuff}/>
+				{
+					isLoggedIn ?
+					<>
+						<Link href="/dashboard">
+							<a className="btn primary-btn" >Dashboard</a>
+						</Link>
+						<Link href="/logout">
+							<a className="btn secondary-btn" >logout</a>
+						</Link>
+					</> :
+					<>
+						<Link href="/login">
+							<a className="btn primary-btn" >Login</a>
+						</Link>
+						<Link href="/signup">
+							<a className="btn secondary-btn" >Sign Up</a>
+						</Link>
+					</>
+				}
 
-				  	{
-						!isLoggedIn ?
-						<>
-							<Link href="/login">
-								<a className="btn primary-btn" >Login</a>
-							</Link>
-							<Link href="/signup">
-								<a className="btn secondary-btn" >Sign up</a>
-							</Link>
-						</> :
-						<>
-							<Link href="/login">
-								<a className="btn primary-btn" >Login</a>
-							</Link>
-							<Link href="/signup">
-								<a className="btn secondary-btn" >Sign Up</a>
-							</Link>
-						</>
-					}
-
-					<div className={`hamburger ${hamburger ? 'hamburger-active' : ''}`}>
-                        <i className="fas fa-bars" onClick={() => setHamburger(true)}></i>
-                        
-						<ul className="contents">
-                            <div className="close">
-                                <i className="fas fa-times" onClick={() => setHamburger(false)}></i>
-                            </div>
-                            <li><Link href="/login"><a className="btn primary-btn">Login</a></Link></li>
-                            <li><Link href="/signup"><a className="btn secondary-btn">Sign Up</a></Link></li>
-                        </ul>
-                    </div>
-                </div>
+				<div className={`hamburger ${hamburger ? 'hamburger-active' : ''}`}>
+					<i className="fas fa-bars" onClick={() => setHamburger(true)}></i>
+					
+					<ul className="contents">
+						<div className="close">
+							<i className="fas fa-times" onClick={() => setHamburger(false)}></i>
+						</div>
+						{
+							isLoggedIn ? 
+							<>
+								<li><Link href="/dashboard"><a className="btn primary-btn">Dashboard</a></Link></li>
+								<li><Link href="/logout"><a className="btn secondary-btn">Logout</a></Link></li>
+							</> :
+							<>
+								<li><Link href="/login"><a className="btn primary-btn">Login</a></Link></li>
+								<li><Link href="/signup"><a className="btn secondary-btn">Sign Up</a></Link></li>
+							</>
+						}
+					</ul>
+				</div>
+			</div>
         </div>
 	);
 };

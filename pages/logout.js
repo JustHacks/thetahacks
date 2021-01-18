@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import firebase from "firebase";
+import { useRouter } from "next/router";
 
 const LogoutPage = () => {
 	useEffect(async () => {

@@ -5,18 +5,22 @@ import { Formik } from "formik";
 import firebase from "firebase";
 import styles from "./form.module.css";
 import buttonStyles from "./button.module.css";
+import { useRouter } from "next/router";
 
 const LoginForm = () => {
+	const router = useRouter();
+
 	useEffect(() => {
 		firebase.auth().onAuthStateChanged(() => {
 			if (firebase.auth().currentUser) {
-				window.location = '/dashboard'; // is this the right way to do this?
+				router.push("/dashboard");
 			}
 		});
 	}, []);
 
 	const onSubmit = async ({ email, password }, { setSubmitting }) => {
 		await firebase.auth().signInWithEmailAndPassword(email, password);
+		router.push("/dashboard");
     };
 
 	const validate = ({ email, password }) => {

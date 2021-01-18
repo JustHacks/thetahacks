@@ -1,0 +1,16 @@
+.link {
+	color: rgb(92, 133, 160);
+}
+
+.link:hover {
+	text-decoration: underline;
+}
+
+.container {
+	text-align: center;
+	max-width: 1000px;
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto;
+}
+

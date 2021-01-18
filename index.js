@@ -1,7 +1,7 @@
 const next = require("next");
 const server = require("./server/index");
 
-const app = next({ dev: true });
+const app = next({ dev: process.env.NODE_ENV != "production" });
 
 app.prepare().then(async () => {
     server.use(app.getRequestHandler());

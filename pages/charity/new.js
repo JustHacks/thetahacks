@@ -5,14 +5,17 @@ import Head from 'next/head';
 import Link from 'next/link';
 import newStyles from '../../components/new.module.css';
 import { charityWrite } from "../../lib/api";
+import { useRouter } from "next/router";
 
 const NewCharity = () => {
+	const router = useRouter();
+
     const [loaded, setLoaded] = useState(true);
 
 	useEffect(() => {
 		firebase.auth().onAuthStateChanged(() => {
 			if (!firebase.auth().currentUser) {
-				window.location = '/login';
+				router.push("/login");
 			}
 		});
 	}, []);
@@ -21,7 +24,7 @@ const NewCharity = () => {
     	const user = firebase.auth().currentUser;
 		
 		if (!user) {
-            window.location = '/login'; // isthis the right way to do this?
+            router.push("/login");
         }
         const reader = new FileReader();
         
@@ -39,7 +42,7 @@ const NewCharity = () => {
                 owner: user.name, 
                 token: await user.getIdToken()
             });
-            window.location = '/dashboard';
+            router.push("/dashboard");
         });
         reader.readAsBinaryString(photo);
 		setSubmitting(false);
@@ -110,7 +113,7 @@ const NewCharity = () => {
 		<Head>
 			<title>Pana | New</title>
 		</Head>
-			<Link href="/dashboard"><a className={newStyles.links}>Back</a></Link>
+			<Link href="/dashboard"><a className={newStyles.btn}>Back</a></Link>
 		<Formik
 			initialValues={{ name: '', description: '', donationLinks: '', website: '', tags: '' }}
 			validate={validate}
@@ -118,91 +121,94 @@ const NewCharity = () => {
 		>
 			{({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting, setFieldValue }) => (
 				<div className={newStyles.newContainer}>
-				<form onSubmit={handleSubmit}>
-					<div className={newStyles.photo}>
-					<input
-						type="file"
-						name="photo"
-						id="photo"
-						accept="image/*"
-						title="Upload Image for your charity"
-						onChange={e => setFieldValue("photo", e.target.files[0])}
-						onBlur={handleBlur}
-					/>
-					{errors.photo && touched.photo && errors.photo}
-					</div>
-					<div className={newStyles.name}>
-					<label htmlFor="name">Charity Name: </label>
-					<input
-						type="text"
-						name="name"
-						id="name"
-            placeholder="Name..."
-						title="Name for your charity"
-						onChange={handleChange}
-						onBlur={handleBlur}
-						value={values.name}
-					/>
-					{errors.name && touched.name && errors.name}
-					</div>
-					<div className={newStyles.desc}>
-					<label htmlFor="description">Description/About: </label>
-					<textarea
-						type="text"
-						name="description"
-            placeholder="Description..."
-						id="description"
-						title="Description for your charity"
-						onChange={handleChange}
-						onBlur={handleBlur}
-						value={values.description}
-					/>
-					{errors.description && touched.description && errors.description}
-					</div>
-					<div className={newStyles.website}>					<label htmlFor="website">Website: </label>
-					<input
-						type="url"
-						name="website"
-						id="website"
-            placeholder="Website..."
-						title="Add a website for your charity"
-						onChange={handleChange}
-						onBlur={handleBlur}
-						value={values.website}
-					/>
-					{errors.website && touched.website && errors.website}
-					</div>
-					<div className={newStyles.donations}>
-					<label htmlFor="donationLinks">Donation Links: </label>
-					<input
-						type="text"
-						name="donationLinks"
-						id="donationLinks"
-            placeholder="Links..."
-						title="Donation links to your website"
-						onChange={handleChange}
-						onBlur={handleBlur}
-						value={values.donationLinks}
-					/>
-					{errors.donationLinks && touched.donationLinks && errors.donationLinks}
-					</div>
-					<div className={newStyles.tags}>
-					<label htmlFor="tags">Tags: </label>
-					<input
-						type="text"
-						name="tags"
-						id="tags"
-            placeholder="Tags..."
-						title="Tags to make it easier for people to find your charity"
-						onChange={handleChange}
-						onBlur={handleBlur}
-						value={values.tags}
-					/>
-					{errors.tags && touched.tags && errors.tags}
-					</div>
+					<form onSubmit={handleSubmit}>
+						<div className={newStyles.wrap}>
+							<input
+								type="file"
+								name="photo"
+								id="photo"
+								accept="image/*"
+								title="Upload Image for your charity"
+								onChange={e => setFieldValue("photo", e.target.files[0])}
+								onBlur={handleBlur}
+							/>
+							{errors.photo && touched.photo && errors.photo}
+						</div>
+						<div className={newStyles.wrap}>
+							<label htmlFor="name">Charity Name:</label><br></br>
+							<input
+								type="text"
+								name="name"
+								id="name"
+								placeholder="Name..."
+								title="Name for your charity"
+								onChange={handleChange}
+								onBlur={handleBlur}
+								value={values.name}
+							/>
+							{errors.name && touched.name && errors.wrap}
+						</div>
+						<div className={newStyles.wrap}>
+							<label htmlFor="description">Description/About: </label>
+							<textarea
+								type="text"
+								name="description"
+								placeholder="Description..."
+								id="description"
+								title="Description for your charity"
+								onChange={handleChange}
+								onBlur={handleBlur}
+								value={values.description}
+							/>
+							{errors.description && touched.description && errors.description}
+						</div>
+						<div className={newStyles.wrap}>
+							<label htmlFor="website">Website:</label><br></br>
+							<input
+								type="url"
+								name="website"
+								id="website"
+								placeholder="Website..."
+								title="Add a website for your charity"
+								onChange={handleChange}
+								onBlur={handleBlur}
+								value={values.website}
+							/>
+							{errors.website && touched.website && errors.website}
+						</div>
+						<div className={newStyles.wrap}>
+							<label htmlFor="donationLinks">Donation Links:</label><br></br>
+							<input
+								type="text"
+								name="donationLinks"
+								id="donationLinks"
+								placeholder="Links (comma separated)..."
+								title="Donation links to your website"
+								onChange={handleChange}
+								onBlur={handleBlur}
+								value={values.donationLinks}
+							/>
+							{errors.donationLinks && touched.donationLinks && errors.donationLinks}
+						</div>
+						<div className={newStyles.wrap}>
+						<div className={newStyles.label}>
+							<label htmlFor="tags">Tags:</label><br></br>
+						</div>
+							<input
+								type="text"
+								name="tags"
+								id="tags"
+								placeholder="Tags (comma separated)..."
+								title="Tags to make it easier for people to find your charity"
+								onChange={handleChange}
+								onBlur={handleBlur}
+								value={values.tags}
+							/>
+							{errors.tags && touched.tags && errors.tags}
+						</div>
 
-					<button className={newStyles.btn} type="submit" disabled={loaded && isSubmitting}> Submit </button>
-				</form>
+						<button className={newStyles.btn} type="submit" disabled={loaded && isSubmitting}> Submit </button>
+					</form>
 				</div>
 			)}
 		</Formik>

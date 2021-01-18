@@ -1,12 +1,11 @@
 /* main area */
 
 .charities {
-    width: 80%;
+    max-width: 900px;
     min-height: 70vh;
     display: flex;
     flex-wrap: wrap;
-    margin-right: auto;
-    margin-left: auto;
+    margin: 100px auto;
     justify-content: center;
 }
 
@@ -14,10 +13,16 @@
 
 .charities > li {
     width: 250px;
+    height: 350px;
     padding: 10px 20px;
     margin: 10px;
     background: var(--white);
-    box-shadow: var(--shadow);   
+    box-shadow: var(--shadow);  
+    position: relative; 
+}
+
+.charities a{
+    margin: 0;
 }
 
 /* card content */
@@ -25,15 +30,21 @@
 .charities ul{
     margin: 0;
     margin-left: -2px;
-    margin-top: 10px;
+    margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
+    position: absolute;
+    bottom: 10px;
 }
 
 .charities h3{
     font-size: 1.2em;
     margin: 5px 0;
     color: var(--main);
+}
+
+.charities p{
+    margin-bottom: 20px;
 }
 
 .tags li{
@@ -44,17 +55,12 @@
     background: var(--main);
 }
 
-.footer{
-    position: relative;
-    bottom: 0;
-}
-
 /*btn*/
 
 .btn {
 	color: var(--white);
-  background: var(--main);
-  border: 2px solid var(--main);
+    background: var(--main);
+    border: 2px solid var(--main);
 	padding: 3px 15px;
 	transition: 200ms;
 	border-radius: 2px;
@@ -64,4 +70,22 @@
 .btn:hover {
 	background: var(--maindark);
 	transition: 200ms;
+}
+
+/* why */
+
+.why{
+    widows: 70%;
+    width: 75%;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.why h3{
+    margin-bottom: 20px;
+}
+
+.footer{
+    position: relative;
+    bottom: 0;
 }

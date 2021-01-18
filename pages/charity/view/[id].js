@@ -1,60 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import Head from 'next/head'
-import { charityRead } from "../../../lib/api.js";
+import Head from 'next/head';
+import Header from '../../../components/header.js';
+import CharityView from "../../../components/charityView.js";
 
-const ViewCharityPage = () => {
+const CharityViewPage = () => {
 	const { id } = useRouter().query;
     
-    const [charity, setCharity] = useState(null);
-
-    const [error, setError] = useState(false);
-    const [reason, setReason] = useState('');
-
-    useEffect(() => { (async () => {
-        const data = await charityRead({ id });
-        if (data.ok) {
-            setCharity(data.charity);
-        } else {
-            setError(true);
-            setReason(data.reason);
-        }
-    })() }, []);	
-
 	return (
-		charity ?
-		<main>
+		<>
 			<Head>
-				<title>Panda | {charity.name}</title>
+				<title>Pana | {charity.name}</title>
 			</Head>
-			<h1>{charity.name}</h1>
-			<img src={charity.photo} />
-            <a href={charity.website}>Website</a>
-			<p>{charity.desc}</p>
-            <h2>Links</h2>
-			<ul>
-				{
-					charity.links.split(',').map(item =>
-						<li><a href={item}>{item}</a></li>
-					)
-				}
-			</ul>
-            <ul class="tags">
-            {
-                charity.tags.split(' ').map(item => 
-                <li>{item}</li>)
-            }
-            </ul>
-		</main>
-		:
-		error ?
-        <>
-		    <span>Error loading charity. Check the link you are using and try again.</span><br/>
-            <span>Exact error: {reason}</span>
-        </>
-		:
-		<span>Loading...</span>
+			<Header />
+			<CharityView id={id}/>
+		</>
 	);
 };
 
-export default ViewCharityPage;
+export default CharityViewPage;

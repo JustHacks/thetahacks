@@ -1,19 +1,64 @@
 .newContainer {
-	margin: 0 auto;
+	margin-top: 20px;
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%, -50%);
 	display: flex;
-	flex-direction: row;
-	justify-content: center;
+	flex-direction: column;
+	justify-content: space-evenly;
 	align-items: center;
-	/*transform: translateY(50%);*/
+	background-color: #fff;
+	width: 90%;
+	padding: 40px 20px;
+	overflow-x: auto;
+	box-shadow: 0px 17px 25px 0px var(--shadow-color);
+	z-index: 6 !important;
+    max-width: 400px;
+		text-align: center;
 }
 
-.newContainer label {
-	margin-right: 4px;
+.label {
+	text-align: left;
+	border: 2px solid #000;
+}
+
+.newContainer input:not(:first-child), .newContainer textarea {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border: 2.5px solid transparent;
+	padding: 5px;
+	font-size: 15px;
+	border-radius: 5px;
+	background-color: rgb(181, 197, 216);
+	color: var(--white);
+}
+
+.newContainer textarea {
+	width: 70%;
+	height: 30%;
 }
 
 .newContainer input {
-	margin-top: 5px;
-	margin-bottom: 5px;
+	width: 57%;
+	margin-top: 8px;
+}
+
+.wrap {
+	display: block;
+}
+
+.newContainer input label {
+	display: block;
+}
+
+.newContainer input::placeholder, .newContainer textarea::placeholder {
+	color: var(--white);
+}
+
+.newContainer input:focus, .newContainer textarea:focus {
+	outline: none;
+	border: 2.5px solid #96aac2;
 }
 
 .photo {
@@ -28,6 +73,11 @@
 	transition: 200ms;
 	border-radius: 2px;
 	cursor: pointer;
+	font-size: 16px;
+}
+
+.newContainer .btn {
+	margin: 0 auto;
 }
 
 .btn:hover {
@@ -45,4 +95,8 @@
 	text-decoration: underline;
 	transform: scale(1.09);
 	transition: 100ms;
+}
+
+@media screen and (max-width: 380px) {
+	.newContainer .btn {transform: translateX(100%);}
 }

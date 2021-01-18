@@ -27,6 +27,7 @@ h1#title {
 }
 
 body, html  {
+    min-height: 70vh;
     color: var(--text);
 	background: var(--white); 
     font-family: var(--font-fam);
@@ -113,6 +114,7 @@ body, html  {
     transition: .2s ease-in-out;
     margin: 0 5px;
     text-align: center;
+		font-size: 16px;
 }
 
 .primary-btn {
@@ -130,6 +132,7 @@ body, html  {
     color: var(--main);
     background: var(--white);
     border: 2px solid var(--main);
+		padding: 6px 15px;
 }
 
 .secondary-btn:hover{
@@ -197,6 +200,7 @@ hr{
     font-size: 18px;
     padding-left: 10px;
     color: var(--main);
+		margin-bottom: 5px;
 }
 
 .card-text p{
@@ -326,11 +330,24 @@ ul li{
 	transition: 2s;
 }
 
+.logoLink {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	vertical-align: 50%;
+	transition: 150ms ease-out;
+}
 
+.logoLink:hover {
+	opacity: 0.8;
+	transition: 150ms ease-out;
+}
 
 .logo {
     display: flex;
     align-items: center;
+		white-space: nowrap;
+		flex-direction: row;
 }
 
 .nav > .hamburger > .contents {
