@@ -15,6 +15,10 @@ We ran into several issues and bugs that seemed insurmountable. Firestore did no
 ### Accomplishments that We're proud of
 I think we were proud of getting such a smooth setup and nice look in general. Using things like the searchbar feels very seamless and interactive, and overall the look of the site and the aesthetic it gives off is really pleasing to us, and I think we are quite satisfied with it.
 
+
+![pana](https://user-images.githubusercontent.com/47777673/124595531-c3f83000-de7e-11eb-8b9f-e56e4efdb6b4.png)
+
+
 ### What We learned
 We learned a lot about how to use CSS modules with React, and how to use Firebase for authentication. As well, we all got some more experience using React and Next.js, tools none of us were all that familiar with going into the project.
 
